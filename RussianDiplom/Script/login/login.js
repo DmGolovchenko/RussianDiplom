@@ -12,8 +12,9 @@ app.controller('MainController', ['$scope', 'WebServices',
                        Username : user,
                        Password : pass
                    },
-                   function success(value){
-                       alert('Yes');
+                   function success(value) {
+                       if (value == 0) alert('Yes');
+                       else alert('Not found');
                    },
                    function error(err){
                        alert('No');

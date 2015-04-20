@@ -20,5 +20,12 @@ namespace RussianDiplom.Controllers
             ViewBag.ReturnUrl = returnUrl;
             return View("LoginPage");
         }
+
+        [AllowAnonymous]
+        public ActionResult Register(string returnUrl)
+        {
+            ViewBag.ReturnUrl = returnUrl;
+            return View("RegisterPage");
+        }
     }
 }
