@@ -8,7 +8,6 @@ namespace RussianDiplom.Controllers
 {
     public class HomeController : Controller
     {
-        [Authorize]
         public ViewResult Index()
         {
             return View("LoginPage");
@@ -26,6 +25,13 @@ namespace RussianDiplom.Controllers
         {
             ViewBag.ReturnUrl = returnUrl;
             return View("RegisterPage");
+        }
+
+        [AllowAnonymous]
+        public ActionResult Island(string returnUrl)
+        {
+            ViewBag.ReturnUrl = returnUrl;
+            return View("Island");
         }
     }
 }

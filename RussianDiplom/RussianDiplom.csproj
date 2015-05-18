@@ -983,8 +983,14 @@
     <Content Include="Styles\bootstrap\bootstrap.css.map" />
     <Content Include="Views\Home\LoginPage.cshtml" />
     <Content Include="Views\Home\RegisterPage.cshtml" />
+    <Content Include="Views\Home\Island.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\DAL\DAL.csproj">
+      <Project>{03304fd8-3044-4f76-af2e-a68591ba6bf5}</Project>
+      <Name>DAL</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />

@@ -19,6 +19,7 @@ namespace RussianDiplom.Controllers
             {
                 if (Membership.ValidateUser(Username, Password))
                 {
+                    var a = Membership.GetUser();
                     return 0;
                 }
                 else

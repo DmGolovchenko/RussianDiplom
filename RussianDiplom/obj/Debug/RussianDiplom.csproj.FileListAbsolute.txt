@@ -66,6 +66,7 @@ C:\Users\dimat_000\Documents\Visual Studio 2013\Projects\RussianDiplom\RussianDi
 C:\Users\dimat_000\Documents\Visual Studio 2013\Projects\RussianDiplom\RussianDiplom\RussianDiplom\bin\RussianDiplom.dll
 C:\Users\dimat_000\Documents\Visual Studio 2013\Projects\RussianDiplom\RussianDiplom\RussianDiplom\bin\RussianDiplom.pdb
 C:\Users\dimat_000\Documents\Visual Studio 2013\Projects\RussianDiplom\RussianDiplom\RussianDiplom\bin\Antlr3.Runtime.dll
+C:\Users\dimat_000\Documents\Visual Studio 2013\Projects\RussianDiplom\RussianDiplom\RussianDiplom\bin\DAL.dll
 C:\Users\dimat_000\Documents\Visual Studio 2013\Projects\RussianDiplom\RussianDiplom\RussianDiplom\bin\Microsoft.Web.Infrastructure.dll
 C:\Users\dimat_000\Documents\Visual Studio 2013\Projects\RussianDiplom\RussianDiplom\RussianDiplom\bin\Newtonsoft.Json.dll
 C:\Users\dimat_000\Documents\Visual Studio 2013\Projects\RussianDiplom\RussianDiplom\RussianDiplom\bin\System.Net.Http.Formatting.dll
@@ -79,6 +80,8 @@ C:\Users\dimat_000\Documents\Visual Studio 2013\Projects\RussianDiplom\RussianDi
 C:\Users\dimat_000\Documents\Visual Studio 2013\Projects\RussianDiplom\RussianDiplom\RussianDiplom\bin\System.Web.WebPages.dll
 C:\Users\dimat_000\Documents\Visual Studio 2013\Projects\RussianDiplom\RussianDiplom\RussianDiplom\bin\System.Web.WebPages.Razor.dll
 C:\Users\dimat_000\Documents\Visual Studio 2013\Projects\RussianDiplom\RussianDiplom\RussianDiplom\bin\WebGrease.dll
+C:\Users\dimat_000\Documents\Visual Studio 2013\Projects\RussianDiplom\RussianDiplom\RussianDiplom\bin\EntityFramework.dll
+C:\Users\dimat_000\Documents\Visual Studio 2013\Projects\RussianDiplom\RussianDiplom\RussianDiplom\bin\DAL.pdb
 C:\Users\dimat_000\Documents\Visual Studio 2013\Projects\RussianDiplom\RussianDiplom\RussianDiplom\bin\Newtonsoft.Json.xml
 C:\Users\dimat_000\Documents\Visual Studio 2013\Projects\RussianDiplom\RussianDiplom\RussianDiplom\bin\System.Net.Http.Formatting.xml
 C:\Users\dimat_000\Documents\Visual Studio 2013\Projects\RussianDiplom\RussianDiplom\RussianDiplom\bin\System.Web.Helpers.xml
@@ -91,6 +94,7 @@ C:\Users\dimat_000\Documents\Visual Studio 2013\Projects\RussianDiplom\RussianDi
 C:\Users\dimat_000\Documents\Visual Studio 2013\Projects\RussianDiplom\RussianDiplom\RussianDiplom\bin\System.Web.WebPages.Deployment.xml
 C:\Users\dimat_000\Documents\Visual Studio 2013\Projects\RussianDiplom\RussianDiplom\RussianDiplom\bin\System.Web.WebPages.Razor.xml
 C:\Users\dimat_000\Documents\Visual Studio 2013\Projects\RussianDiplom\RussianDiplom\RussianDiplom\bin\Antlr3.Runtime.pdb
+C:\Users\dimat_000\Documents\Visual Studio 2013\Projects\RussianDiplom\RussianDiplom\RussianDiplom\bin\EntityFramework.xml
 C:\Users\dimat_000\Documents\Visual Studio 2013\Projects\RussianDiplom\RussianDiplom\RussianDiplom\obj\Debug\RussianDiplom.csprojResolveAssemblyReference.cache
 C:\Users\dimat_000\Documents\Visual Studio 2013\Projects\RussianDiplom\RussianDiplom\RussianDiplom\obj\Debug\RussianDiplom.dll
 C:\Users\dimat_000\Documents\Visual Studio 2013\Projects\RussianDiplom\RussianDiplom\RussianDiplom\obj\Debug\RussianDiplom.pdb

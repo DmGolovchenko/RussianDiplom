@@ -65,11 +65,11 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="packages.config" />
     <EntityDeploy Include="RussianModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>RussianModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="packages.config" />
     <Content Include="RussianModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>RussianModel.edmx</DependentUpon>
