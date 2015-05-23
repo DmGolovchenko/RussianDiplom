@@ -33,5 +33,35 @@ namespace RussianDiplom.Controllers
             ViewBag.ReturnUrl = returnUrl;
             return View("Island");
         }
+
+        [AllowAnonymous]
+        public ActionResult AdminHome()
+        {            
+            return View("AdminHome");
+        }
+
+        [AllowAnonymous]
+        public ActionResult ManageUser()
+        {
+            return View("ManageUser");
+        }
+
+        [AllowAnonymous]
+        public ActionResult ManageClass()
+        {
+            return View("ManageClass");
+        }
+
+        [AllowAnonymous]
+        public ActionResult ManageTheme()
+        {
+            return View("ManageTheme");
+        }
+
+        [AllowAnonymous]
+        public ActionResult ManageTest()
+        {
+            return View("ManageTest");
+        }
     }
 }

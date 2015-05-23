@@ -115,6 +115,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
+    <Folder Include="Views\Administration\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -140,6 +141,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WebApi\Controllers\AdministrationController.cs" />
     <Compile Include="WebApi\Controllers\LoginController.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -999,6 +1001,12 @@
     <Content Include="Views\Home\LoginPage.cshtml" />
     <Content Include="Views\Home\RegisterPage.cshtml" />
     <Content Include="Views\Home\Island.cshtml" />
+    <Content Include="Views\Home\AdminHome.cshtml" />
+    <Content Include="Views\Home\ManageUser.cshtml" />
+    <Content Include="Views\Home\ManageClass.cshtml" />
+    <Content Include="Views\Home\ManageTheme.cshtml" />
+    <Content Include="Views\Home\ManageTest.cshtml" />
+    <Content Include="Views\Shared\Master.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DAL\DAL.csproj">

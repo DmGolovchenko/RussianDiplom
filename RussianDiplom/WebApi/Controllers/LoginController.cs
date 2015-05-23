@@ -1,13 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Web.Http;
-using System.Web.Security;
+﻿using System.Security.Cryptography.X509Certificates;
 
 namespace RussianDiplom.Controllers
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Net;
+    using System.Net.Http;
+    using System.Web.Http;
+    using System.Web.Security;
+
     public class LoginController : ApiController
     {
         [AllowAnonymous]
@@ -19,12 +21,20 @@ namespace RussianDiplom.Controllers
             {
                 if (Membership.ValidateUser(Username, Password))
                 {
-                    var a = Membership.GetUser();
-                    return 0;
+                    var user = Membership.GetUser(Username);
+                    var userRoles = Roles.GetRolesForUser(Username);
+                    if (userRoles.Contains("Administrator"))
+                    {
+                        return 0;
+                    }
+                    else
+                    {
+                        return 1;
+                    }
                 }
                 else
                 {
-                    return 1;
+                    return 2;
                 }
             }
             else return 1;
@@ -36,7 +46,7 @@ namespace RussianDiplom.Controllers
         public String Register(String Username, String Password)
         {
             MembershipCreateStatus createStatus;
-            Membership.CreateUser(Username, Password, null, passwordQuestion: null, passwordAnswer: null, isApproved: true, providerUserKey: null, status: out createStatus);            
+            Membership.CreateUser(Username, Password, null, passwordQuestion: null, passwordAnswer: null, isApproved: true, providerUserKey: null, status: out createStatus);                                    
 
             if (createStatus == MembershipCreateStatus.Success)
             {
@@ -47,7 +57,7 @@ namespace RussianDiplom.Controllers
             {
                 return createStatus.ToString();
             }
-        }
+        }       
 
     }
 }
