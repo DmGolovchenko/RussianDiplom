@@ -1,4 +1,179 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="RussianModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-  <EntityContainer Name="RussianEntities" annotation:LazyLoadingEnabled="true" />
+  <EntityContainer Name="RussianEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="aspnet_Users" EntityType="RussianModel.aspnet_Users" />
+    <EntitySet Name="tAnswer" EntityType="RussianModel.tAnswer" />
+    <EntitySet Name="tClassNumber" EntityType="RussianModel.tClassNumber" />
+    <EntitySet Name="tQuestion" EntityType="RussianModel.tQuestion" />
+    <EntitySet Name="tQuestionType" EntityType="RussianModel.tQuestionType" />
+    <EntitySet Name="tTheme" EntityType="RussianModel.tTheme" />
+    <AssociationSet Name="FK_aspnet_Users_tClassNumber" Association="RussianModel.FK_aspnet_Users_tClassNumber">
+      <End Role="tClassNumber" EntitySet="tClassNumber" />
+      <End Role="aspnet_Users" EntitySet="aspnet_Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tAnswer_tQuestion" Association="RussianModel.FK_tAnswer_tQuestion">
+      <End Role="tQuestion" EntitySet="tQuestion" />
+      <End Role="tAnswer" EntitySet="tAnswer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tAnswer_tQuestion1" Association="RussianModel.FK_tAnswer_tQuestion1">
+      <End Role="tQuestion" EntitySet="tQuestion" />
+      <End Role="tAnswer" EntitySet="tAnswer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tQuestion_tClassNumber" Association="RussianModel.FK_tQuestion_tClassNumber">
+      <End Role="tClassNumber" EntitySet="tClassNumber" />
+      <End Role="tQuestion" EntitySet="tQuestion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tTheme_tClassNumber" Association="RussianModel.FK_tTheme_tClassNumber">
+      <End Role="tClassNumber" EntitySet="tClassNumber" />
+      <End Role="tTheme" EntitySet="tTheme" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tQuestion_tQuestionType" Association="RussianModel.FK_tQuestion_tQuestionType">
+      <End Role="tQuestionType" EntitySet="tQuestionType" />
+      <End Role="tQuestion" EntitySet="tQuestion" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="aspnet_Users">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="ApplicationId" Type="Guid" Nullable="false" />
+    <Property Name="UserId" Type="Guid" Nullable="false" />
+    <Property Name="UserName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="LoweredUserName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="MobileAlias" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+    <Property Name="IsAnonymous" Type="Boolean" Nullable="false" />
+    <Property Name="LastActivityDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="fkClassNumber" Type="Guid" />
+    <NavigationProperty Name="tClassNumber" Relationship="RussianModel.FK_aspnet_Users_tClassNumber" FromRole="aspnet_Users" ToRole="tClassNumber" />
+  </EntityType>
+  <EntityType Name="tAnswer">
+    <Key>
+      <PropertyRef Name="pk" />
+    </Key>
+    <Property Name="pk" Type="Guid" Nullable="false" />
+    <Property Name="textOfAnswer" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="fkQuestion" Type="Guid" Nullable="false" />
+    <Property Name="fkCurrentQuestion" Type="Guid" Nullable="false" />
+    <NavigationProperty Name="tQuestion" Relationship="RussianModel.FK_tAnswer_tQuestion" FromRole="tAnswer" ToRole="tQuestion" />
+    <NavigationProperty Name="tQuestion1" Relationship="RussianModel.FK_tAnswer_tQuestion1" FromRole="tAnswer" ToRole="tQuestion" />
+    <Property Name="deleted" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tClassNumber">
+    <Key>
+      <PropertyRef Name="pk" />
+    </Key>
+    <Property Name="pk" Type="Guid" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="numberOfClass" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="aspnet_Users" Relationship="RussianModel.FK_aspnet_Users_tClassNumber" FromRole="tClassNumber" ToRole="aspnet_Users" />
+    <NavigationProperty Name="tQuestion" Relationship="RussianModel.FK_tQuestion_tClassNumber" FromRole="tClassNumber" ToRole="tQuestion" />
+    <NavigationProperty Name="tTheme" Relationship="RussianModel.FK_tTheme_tClassNumber" FromRole="tClassNumber" ToRole="tTheme" />
+    <Property Name="deleted" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tQuestion">
+    <Key>
+      <PropertyRef Name="pk" />
+    </Key>
+    <Property Name="pk" Type="Guid" Nullable="false" />
+    <Property Name="questionText" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="fkType" Type="Guid" Nullable="false" />
+    <Property Name="fkClassNumber" Type="Guid" Nullable="false" />
+    <NavigationProperty Name="tAnswer" Relationship="RussianModel.FK_tAnswer_tQuestion" FromRole="tQuestion" ToRole="tAnswer" />
+    <NavigationProperty Name="tAnswer1" Relationship="RussianModel.FK_tAnswer_tQuestion1" FromRole="tQuestion" ToRole="tAnswer" />
+    <NavigationProperty Name="tClassNumber" Relationship="RussianModel.FK_tQuestion_tClassNumber" FromRole="tQuestion" ToRole="tClassNumber" />
+    <NavigationProperty Name="tQuestionType" Relationship="RussianModel.FK_tQuestion_tQuestionType" FromRole="tQuestion" ToRole="tQuestionType" />
+    <Property Name="deleted" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tQuestionType">
+    <Key>
+      <PropertyRef Name="pk" />
+    </Key>
+    <Property Name="pk" Type="Guid" Nullable="false" />
+    <Property Name="name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="synonym" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="deleted" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="tQuestion" Relationship="RussianModel.FK_tQuestion_tQuestionType" FromRole="tQuestionType" ToRole="tQuestion" />
+  </EntityType>
+  <EntityType Name="tTheme">
+    <Key>
+      <PropertyRef Name="pk" />
+    </Key>
+    <Property Name="pk" Type="Guid" Nullable="false" />
+    <Property Name="name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="synonym" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="fkClassNumber" Type="Guid" Nullable="false" />
+    <NavigationProperty Name="tClassNumber" Relationship="RussianModel.FK_tTheme_tClassNumber" FromRole="tTheme" ToRole="tClassNumber" />
+    <Property Name="deleted" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_aspnet_Users_tClassNumber">
+    <End Type="RussianModel.tClassNumber" Role="tClassNumber" Multiplicity="0..1" />
+    <End Type="RussianModel.aspnet_Users" Role="aspnet_Users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tClassNumber">
+        <PropertyRef Name="pk" />
+      </Principal>
+      <Dependent Role="aspnet_Users">
+        <PropertyRef Name="fkClassNumber" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tAnswer_tQuestion">
+    <End Type="RussianModel.tQuestion" Role="tQuestion" Multiplicity="1" />
+    <End Type="RussianModel.tAnswer" Role="tAnswer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tQuestion">
+        <PropertyRef Name="pk" />
+      </Principal>
+      <Dependent Role="tAnswer">
+        <PropertyRef Name="fkQuestion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tAnswer_tQuestion1">
+    <End Type="RussianModel.tQuestion" Role="tQuestion" Multiplicity="1" />
+    <End Type="RussianModel.tAnswer" Role="tAnswer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tQuestion">
+        <PropertyRef Name="pk" />
+      </Principal>
+      <Dependent Role="tAnswer">
+        <PropertyRef Name="fkCurrentQuestion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tQuestion_tClassNumber">
+    <End Type="RussianModel.tClassNumber" Role="tClassNumber" Multiplicity="1" />
+    <End Type="RussianModel.tQuestion" Role="tQuestion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tClassNumber">
+        <PropertyRef Name="pk" />
+      </Principal>
+      <Dependent Role="tQuestion">
+        <PropertyRef Name="fkClassNumber" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tTheme_tClassNumber">
+    <End Type="RussianModel.tClassNumber" Role="tClassNumber" Multiplicity="1" />
+    <End Type="RussianModel.tTheme" Role="tTheme" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tClassNumber">
+        <PropertyRef Name="pk" />
+      </Principal>
+      <Dependent Role="tTheme">
+        <PropertyRef Name="fkClassNumber" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tQuestion_tQuestionType">
+    <End Type="RussianModel.tQuestionType" Role="tQuestionType" Multiplicity="1" />
+    <End Type="RussianModel.tQuestion" Role="tQuestion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tQuestionType">
+        <PropertyRef Name="pk" />
+      </Principal>
+      <Dependent Role="tQuestion">
+        <PropertyRef Name="fkType" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

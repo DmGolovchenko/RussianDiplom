@@ -1,4 +1,71 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="RussianModelStoreContainer" CdmEntityContainer="RussianEntities" />
+  <EntityContainerMapping StorageEntityContainer="RussianModelStoreContainer" CdmEntityContainer="RussianEntities">
+    <EntitySetMapping Name="aspnet_Users">
+      <EntityTypeMapping TypeName="RussianModel.aspnet_Users">
+        <MappingFragment StoreEntitySet="aspnet_Users">
+          <ScalarProperty Name="fkClassNumber" ColumnName="fkClassNumber" />
+          <ScalarProperty Name="LastActivityDate" ColumnName="LastActivityDate" />
+          <ScalarProperty Name="IsAnonymous" ColumnName="IsAnonymous" />
+          <ScalarProperty Name="MobileAlias" ColumnName="MobileAlias" />
+          <ScalarProperty Name="LoweredUserName" ColumnName="LoweredUserName" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="ApplicationId" ColumnName="ApplicationId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tAnswer">
+      <EntityTypeMapping TypeName="RussianModel.tAnswer">
+        <MappingFragment StoreEntitySet="tAnswer">
+          <ScalarProperty Name="deleted" ColumnName="deleted" />
+          <ScalarProperty Name="fkCurrentQuestion" ColumnName="fkCurrentQuestion" />
+          <ScalarProperty Name="fkQuestion" ColumnName="fkQuestion" />
+          <ScalarProperty Name="textOfAnswer" ColumnName="textOfAnswer" />
+          <ScalarProperty Name="pk" ColumnName="pk" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tClassNumber">
+      <EntityTypeMapping TypeName="RussianModel.tClassNumber">
+        <MappingFragment StoreEntitySet="tClassNumber">
+          <ScalarProperty Name="deleted" ColumnName="deleted" />
+          <ScalarProperty Name="numberOfClass" ColumnName="numberOfClass" />
+          <ScalarProperty Name="pk" ColumnName="pk" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tQuestion">
+      <EntityTypeMapping TypeName="RussianModel.tQuestion">
+        <MappingFragment StoreEntitySet="tQuestion">
+          <ScalarProperty Name="deleted" ColumnName="deleted" />
+          <ScalarProperty Name="fkClassNumber" ColumnName="fkClassNumber" />
+          <ScalarProperty Name="fkType" ColumnName="fkType" />
+          <ScalarProperty Name="questionText" ColumnName="questionText" />
+          <ScalarProperty Name="pk" ColumnName="pk" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tQuestionType">
+      <EntityTypeMapping TypeName="RussianModel.tQuestionType">
+        <MappingFragment StoreEntitySet="tQuestionType">
+          <ScalarProperty Name="deleted" ColumnName="deleted" />
+          <ScalarProperty Name="synonym" ColumnName="synonym" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="pk" ColumnName="pk" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tTheme">
+      <EntityTypeMapping TypeName="RussianModel.tTheme">
+        <MappingFragment StoreEntitySet="tTheme">
+          <ScalarProperty Name="deleted" ColumnName="deleted" />
+          <ScalarProperty Name="fkClassNumber" ColumnName="fkClassNumber" />
+          <ScalarProperty Name="synonym" ColumnName="synonym" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="pk" ColumnName="pk" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
 </Mapping>

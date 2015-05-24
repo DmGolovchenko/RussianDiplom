@@ -94,6 +94,9 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="aspnet_Users.cs">
+      <DependentUpon>RussianModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RussianModel.Context.cs">
       <AutoGen>True</AutoGen>
@@ -109,6 +112,21 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>RussianModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="tAnswer.cs">
+      <DependentUpon>RussianModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tClassNumber.cs">
+      <DependentUpon>RussianModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tQuestion.cs">
+      <DependentUpon>RussianModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tQuestionType.cs">
+      <DependentUpon>RussianModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tTheme.cs">
+      <DependentUpon>RussianModel.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

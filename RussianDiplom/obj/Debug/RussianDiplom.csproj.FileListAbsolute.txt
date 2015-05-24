@@ -98,3 +98,10 @@ C:\Users\dimat_000\Documents\Visual Studio 2013\Projects\RussianDiplom\RussianDi
 C:\Users\dimat_000\Documents\Visual Studio 2013\Projects\RussianDiplom\RussianDiplom\RussianDiplom\obj\Debug\RussianDiplom.csprojResolveAssemblyReference.cache
 C:\Users\dimat_000\Documents\Visual Studio 2013\Projects\RussianDiplom\RussianDiplom\RussianDiplom\obj\Debug\RussianDiplom.dll
 C:\Users\dimat_000\Documents\Visual Studio 2013\Projects\RussianDiplom\RussianDiplom\RussianDiplom\obj\Debug\RussianDiplom.pdb
+C:\Users\dimat_000\Documents\Visual Studio 2013\Projects\RussianDiplom\RussianDiplom\RussianDiplom\bin\EntityFramework.SqlServer.dll
+C:\Users\dimat_000\Documents\Visual Studio 2013\Projects\RussianDiplom\RussianDiplom\RussianDiplom\bin\EntityFramework.SqlServer.xml
+C:\Users\dimat_000\Documents\Visual Studio 2013\Projects\RussianDiplom\RussianDiplom\RussianDiplom\bin\AutoMapper.Net4.dll
+C:\Users\dimat_000\Documents\Visual Studio 2013\Projects\RussianDiplom\RussianDiplom\RussianDiplom\bin\AutoMapper.dll
+C:\Users\dimat_000\Documents\Visual Studio 2013\Projects\RussianDiplom\RussianDiplom\RussianDiplom\bin\AutoMapper.pdb
+C:\Users\dimat_000\Documents\Visual Studio 2013\Projects\RussianDiplom\RussianDiplom\RussianDiplom\bin\AutoMapper.xml
+C:\Users\dimat_000\Documents\Visual Studio 2013\Projects\RussianDiplom\RussianDiplom\RussianDiplom\bin\AutoMapper.Net4.pdb

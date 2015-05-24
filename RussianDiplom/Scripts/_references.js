@@ -769,3 +769,7 @@
 /// <reference path="angular-aria.js" />
 /// <reference path="angular-animate.js" />
 /// <reference path="angular-material.js" />
+/// <reference path="../script/common/routes.js" />
+/// <reference path="../script/admin/home.js" />
+/// <reference path="../script/admin/manageclass.js" />
+/// <reference path="../script/admin/managetheme.js" />

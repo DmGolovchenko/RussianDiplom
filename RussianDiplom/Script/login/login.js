@@ -13,7 +13,7 @@ app.controller('MainController', ['$scope', 'WebServices', '$location',
                        Password : pass
                    },
                    function success(value) {
-                       location.path("/AdminHome");                       
+                       location.path("~/Template/AdminHome.html");
                    },
                    function error(err){
                        alert('No');

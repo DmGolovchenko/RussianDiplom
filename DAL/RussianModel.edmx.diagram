@@ -4,7 +4,20 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="f4cb7f8d1ca546d0b1c6abcdfaf77f62" Name="Diagram1" />
+      <Diagram DiagramId="f4cb7f8d1ca546d0b1c6abcdfaf77f62" Name="Diagram1" >
+        <EntityTypeShape EntityType="RussianModel.aspnet_Users" Width="1.5" PointX="3" PointY="2.875" />
+        <EntityTypeShape EntityType="RussianModel.tAnswer" Width="1.5" PointX="8.25" PointY="4.625" />
+        <EntityTypeShape EntityType="RussianModel.tClassNumber" Width="1.5" PointX="0.75" PointY="4.625" />
+        <EntityTypeShape EntityType="RussianModel.tQuestion" Width="1.5" PointX="6" PointY="4.375" />
+        <EntityTypeShape EntityType="RussianModel.tQuestionType" Width="1.5" PointX="3.75" PointY="6.625" />
+        <EntityTypeShape EntityType="RussianModel.tTheme" Width="1.5" PointX="3" PointY="9.75" />
+        <AssociationConnector Association="RussianModel.FK_aspnet_Users_tClassNumber" />
+        <AssociationConnector Association="RussianModel.FK_tAnswer_tQuestion" />
+        <AssociationConnector Association="RussianModel.FK_tAnswer_tQuestion1" />
+        <AssociationConnector Association="RussianModel.FK_tQuestion_tClassNumber" />
+        <AssociationConnector Association="RussianModel.FK_tTheme_tClassNumber" />
+        <AssociationConnector Association="RussianModel.FK_tQuestion_tQuestionType" />
+      </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

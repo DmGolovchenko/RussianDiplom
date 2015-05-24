@@ -10,15 +10,13 @@ namespace RussianDiplom.Controllers
     {
         public ViewResult Index()
         {
-            return View("LoginPage");
+            return View("Index");
         }
 
-        [AllowAnonymous]
-        public ActionResult Login(string returnUrl)
+        public ViewResult Login()
         {
-            ViewBag.ReturnUrl = returnUrl;
             return View("LoginPage");
-        }
+        }     
 
         [AllowAnonymous]
         public ActionResult Register(string returnUrl)

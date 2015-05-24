@@ -39,10 +39,23 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper">
+      <HintPath>..\packages\AutoMapper.3.3.1\lib\net40\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="AutoMapper.Net4">
+      <HintPath>..\packages\AutoMapper.3.3.1\lib\net40\AutoMapper.Net4.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -115,9 +128,9 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
-    <Folder Include="Views\Administration\" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\AutoMapperConfig.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -143,6 +156,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WebApi\Controllers\AdministrationController.cs" />
     <Compile Include="WebApi\Controllers\LoginController.cs" />
+    <Compile Include="WebApi\Models\ClassNumber.cs" />
+    <Compile Include="WebApi\Models\ClassContainer.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
@@ -150,7 +165,7 @@
     <Content Include="Content\angular-material\angular-material.min.css" />
     <Content Include="Content\images\log_background.jpg" />
     <Content Include="favicon.ico" />
-    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Areas\HelpPage\Views\Web.config" />
     <Content Include="Areas\HelpPage\Views\Shared\_Layout.cshtml" />
@@ -163,10 +178,10 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\HelpPageApiModel.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
-    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Scripts\angular-animate.js" />
     <Content Include="Scripts\angular-animate.min.js" />
     <Content Include="Scripts\angular-aria.js" />
@@ -970,6 +985,10 @@
     <Content Include="Scripts\npm.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Script\admin\home.js" />
+    <Content Include="Script\admin\manageClass.js" />
+    <Content Include="Script\admin\manageTheme.js" />
+    <Content Include="Script\common\routes.js" />
     <Content Include="Script\common\web_services.js" />
     <Content Include="Script\login\login.js" />
     <Content Include="Script\login\register.js" />
@@ -978,6 +997,11 @@
     <Content Include="Styles\bootstrap\bootstrap.css" />
     <Content Include="Styles\bootstrap\bootstrap.min.css" />
     <Content Include="Styles\login\login_style.css" />
+    <Content Include="Template\Admin\AdminHome.html" />
+    <Content Include="Template\Admin\ManageClass.html" />
+    <Content Include="Template\Admin\ManageTest.html" />
+    <Content Include="Template\Admin\ManageTheme.html" />
+    <Content Include="Template\Admin\ManageUser.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -1001,12 +1025,6 @@
     <Content Include="Views\Home\LoginPage.cshtml" />
     <Content Include="Views\Home\RegisterPage.cshtml" />
     <Content Include="Views\Home\Island.cshtml" />
-    <Content Include="Views\Home\AdminHome.cshtml" />
-    <Content Include="Views\Home\ManageUser.cshtml" />
-    <Content Include="Views\Home\ManageClass.cshtml" />
-    <Content Include="Views\Home\ManageTheme.cshtml" />
-    <Content Include="Views\Home\ManageTest.cshtml" />
-    <Content Include="Views\Shared\Master.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DAL\DAL.csproj">
@@ -1046,6 +1064,7 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
+  <Import Project="..\packages\AutoMapper.3.3.1\tools\AutoMapper.targets" Condition="Exists('..\packages\AutoMapper.3.3.1\tools\AutoMapper.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
