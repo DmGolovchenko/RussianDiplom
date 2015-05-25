@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\Users\dimat_000\Documents\Visual Studio 2013\Projects\RussianDiplom\RussianDiplom\DAL\RussianModel.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\Users\dgolovchenko\Documents\Visual Studio 2013\Projects\Russian-Diplom\RussianDiplom\DAL\RussianModel.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

@@ -31,5 +31,6 @@ namespace DAL
         public virtual DbSet<tQuestion> tQuestion { get; set; }
         public virtual DbSet<tQuestionType> tQuestionType { get; set; }
         public virtual DbSet<tTheme> tTheme { get; set; }
+        public virtual DbSet<aspnet_Roles> aspnet_Roles { get; set; }
     }
 }

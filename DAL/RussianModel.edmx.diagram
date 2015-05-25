@@ -17,6 +17,9 @@
         <AssociationConnector Association="RussianModel.FK_tQuestion_tClassNumber" />
         <AssociationConnector Association="RussianModel.FK_tTheme_tClassNumber" />
         <AssociationConnector Association="RussianModel.FK_tQuestion_tQuestionType" />
+        <EntityTypeShape EntityType="RussianModel.aspnet_Roles" Width="1.5" PointX="5.375" PointY="0.75" />
+        <AssociationConnector Association="RussianModel.aspnet_UsersInRoles" />
+        <AssociationConnector Association="RussianModel.FK_tQuestion_tTheme" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

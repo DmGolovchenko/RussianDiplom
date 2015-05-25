@@ -5,6 +5,16 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="RussianModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="aspnet_Roles">
+          <Key>
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="ApplicationId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="RoleId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="RoleName" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="LoweredRoleName" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="256" />
+        </EntityType>
         <EntityType Name="aspnet_Users">
           <Key>
             <PropertyRef Name="UserId" />
@@ -17,6 +27,14 @@
           <Property Name="IsAnonymous" Type="bit" Nullable="false" />
           <Property Name="LastActivityDate" Type="datetime" Nullable="false" />
           <Property Name="fkClassNumber" Type="uniqueidentifier" />
+        </EntityType>
+        <EntityType Name="aspnet_UsersInRoles">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="RoleId" Type="uniqueidentifier" Nullable="false" />
         </EntityType>
         <EntityType Name="tAnswer">
           <Key>
@@ -45,6 +63,7 @@
           <Property Name="fkType" Type="uniqueidentifier" Nullable="false" />
           <Property Name="fkClassNumber" Type="uniqueidentifier" Nullable="false" />
           <Property Name="deleted" Type="bit" Nullable="false" />
+          <Property Name="fkTheme" Type="uniqueidentifier" Nullable="false" />
         </EntityType>
         <EntityType Name="tQuestionType">
           <Key>
@@ -59,12 +78,36 @@
           <Key>
             <PropertyRef Name="pk" />
           </Key>
-          <Property Name="pk" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="pk" Type="uniqueidentifier" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="synonym" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="fkClassNumber" Type="uniqueidentifier" Nullable="false" />
           <Property Name="deleted" Type="bit" Nullable="false" />
         </EntityType>
+        <Association Name="FK__aspnet_Us__RoleI__5DCAEF64">
+          <End Role="aspnet_Roles" Type="Self.aspnet_Roles" Multiplicity="1" />
+          <End Role="aspnet_UsersInRoles" Type="Self.aspnet_UsersInRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="aspnet_Roles">
+              <PropertyRef Name="RoleId" />
+            </Principal>
+            <Dependent Role="aspnet_UsersInRoles">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__aspnet_Us__UserI__5CD6CB2B">
+          <End Role="aspnet_Users" Type="Self.aspnet_Users" Multiplicity="1" />
+          <End Role="aspnet_UsersInRoles" Type="Self.aspnet_UsersInRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="aspnet_Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="aspnet_UsersInRoles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_aspnet_Users_tClassNumber">
           <End Role="tClassNumber" Type="Self.tClassNumber" Multiplicity="0..1" />
           <End Role="aspnet_Users" Type="Self.aspnet_Users" Multiplicity="*" />
@@ -125,6 +168,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_tQuestion_tTheme">
+          <End Role="tTheme" Type="Self.tTheme" Multiplicity="1" />
+          <End Role="tQuestion" Type="Self.tQuestion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tTheme">
+              <PropertyRef Name="pk" />
+            </Principal>
+            <Dependent Role="tQuestion">
+              <PropertyRef Name="fkTheme" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_tTheme_tClassNumber">
           <End Role="tClassNumber" Type="Self.tClassNumber" Multiplicity="1" />
           <End Role="tTheme" Type="Self.tTheme" Multiplicity="*" />
@@ -138,12 +193,22 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="RussianModelStoreContainer">
+          <EntitySet Name="aspnet_Roles" EntityType="Self.aspnet_Roles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="aspnet_Users" EntityType="Self.aspnet_Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="aspnet_UsersInRoles" EntityType="Self.aspnet_UsersInRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tAnswer" EntityType="Self.tAnswer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tClassNumber" EntityType="Self.tClassNumber" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tQuestion" EntityType="Self.tQuestion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tQuestionType" EntityType="Self.tQuestionType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tTheme" EntityType="Self.tTheme" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__aspnet_Us__RoleI__5DCAEF64" Association="Self.FK__aspnet_Us__RoleI__5DCAEF64">
+            <End Role="aspnet_Roles" EntitySet="aspnet_Roles" />
+            <End Role="aspnet_UsersInRoles" EntitySet="aspnet_UsersInRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK__aspnet_Us__UserI__5CD6CB2B" Association="Self.FK__aspnet_Us__UserI__5CD6CB2B">
+            <End Role="aspnet_Users" EntitySet="aspnet_Users" />
+            <End Role="aspnet_UsersInRoles" EntitySet="aspnet_UsersInRoles" />
+          </AssociationSet>
           <AssociationSet Name="FK_aspnet_Users_tClassNumber" Association="Self.FK_aspnet_Users_tClassNumber">
             <End Role="tClassNumber" EntitySet="tClassNumber" />
             <End Role="aspnet_Users" EntitySet="aspnet_Users" />
@@ -162,6 +227,10 @@
           </AssociationSet>
           <AssociationSet Name="FK_tQuestion_tQuestionType" Association="Self.FK_tQuestion_tQuestionType">
             <End Role="tQuestionType" EntitySet="tQuestionType" />
+            <End Role="tQuestion" EntitySet="tQuestion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tQuestion_tTheme" Association="Self.FK_tQuestion_tTheme">
+            <End Role="tTheme" EntitySet="tTheme" />
             <End Role="tQuestion" EntitySet="tQuestion" />
           </AssociationSet>
           <AssociationSet Name="FK_tTheme_tClassNumber" Association="Self.FK_tTheme_tClassNumber">
@@ -204,6 +273,15 @@
             <End Role="tQuestionType" EntitySet="tQuestionType" />
             <End Role="tQuestion" EntitySet="tQuestion" />
           </AssociationSet>
+          <EntitySet Name="aspnet_Roles" EntityType="RussianModel.aspnet_Roles" />
+          <AssociationSet Name="aspnet_UsersInRoles" Association="RussianModel.aspnet_UsersInRoles">
+            <End Role="aspnet_Roles" EntitySet="aspnet_Roles" />
+            <End Role="aspnet_Users" EntitySet="aspnet_Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tQuestion_tTheme" Association="RussianModel.FK_tQuestion_tTheme">
+            <End Role="tTheme" EntitySet="tTheme" />
+            <End Role="tQuestion" EntitySet="tQuestion" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="aspnet_Users">
           <Key>
@@ -218,6 +296,7 @@
           <Property Name="LastActivityDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="fkClassNumber" Type="Guid" />
           <NavigationProperty Name="tClassNumber" Relationship="RussianModel.FK_aspnet_Users_tClassNumber" FromRole="aspnet_Users" ToRole="tClassNumber" />
+          <NavigationProperty Name="aspnet_Roles" Relationship="RussianModel.aspnet_UsersInRoles" FromRole="aspnet_Users" ToRole="aspnet_Roles" />
         </EntityType>
         <EntityType Name="tAnswer">
           <Key>
@@ -255,6 +334,8 @@
           <NavigationProperty Name="tClassNumber" Relationship="RussianModel.FK_tQuestion_tClassNumber" FromRole="tQuestion" ToRole="tClassNumber" />
           <NavigationProperty Name="tQuestionType" Relationship="RussianModel.FK_tQuestion_tQuestionType" FromRole="tQuestion" ToRole="tQuestionType" />
           <Property Name="deleted" Type="Boolean" Nullable="false" />
+          <Property Name="fkTheme" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="tTheme" Relationship="RussianModel.FK_tQuestion_tTheme" FromRole="tQuestion" ToRole="tTheme" />
         </EntityType>
         <EntityType Name="tQuestionType">
           <Key>
@@ -270,12 +351,13 @@
           <Key>
             <PropertyRef Name="pk" />
           </Key>
-          <Property Name="pk" Type="Guid" Nullable="false" />
+          <Property Name="pk" Type="Guid" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="synonym" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="fkClassNumber" Type="Guid" Nullable="false" />
           <NavigationProperty Name="tClassNumber" Relationship="RussianModel.FK_tTheme_tClassNumber" FromRole="tTheme" ToRole="tClassNumber" />
           <Property Name="deleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="tQuestion" Relationship="RussianModel.FK_tQuestion_tTheme" FromRole="tTheme" ToRole="tQuestion" />
         </EntityType>
         <Association Name="FK_aspnet_Users_tClassNumber">
           <End Type="RussianModel.tClassNumber" Role="tClassNumber" Multiplicity="0..1" />
@@ -349,6 +431,33 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="aspnet_Roles">
+          <Key>
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="ApplicationId" Type="Guid" Nullable="false" />
+          <Property Name="RoleId" Type="Guid" Nullable="false" />
+          <Property Name="RoleName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="LoweredRoleName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="aspnet_Users" Relationship="RussianModel.aspnet_UsersInRoles" FromRole="aspnet_Roles" ToRole="aspnet_Users" />
+        </EntityType>
+        <Association Name="aspnet_UsersInRoles">
+          <End Type="RussianModel.aspnet_Roles" Role="aspnet_Roles" Multiplicity="*" />
+          <End Type="RussianModel.aspnet_Users" Role="aspnet_Users" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_tQuestion_tTheme">
+          <End Type="RussianModel.tTheme" Role="tTheme" Multiplicity="1" />
+          <End Type="RussianModel.tQuestion" Role="tQuestion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tTheme">
+              <PropertyRef Name="pk" />
+            </Principal>
+            <Dependent Role="tQuestion">
+              <PropertyRef Name="fkTheme" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -392,6 +501,7 @@
           <EntitySetMapping Name="tQuestion">
             <EntityTypeMapping TypeName="RussianModel.tQuestion">
               <MappingFragment StoreEntitySet="tQuestion">
+                <ScalarProperty Name="fkTheme" ColumnName="fkTheme" />
                 <ScalarProperty Name="deleted" ColumnName="deleted" />
                 <ScalarProperty Name="fkClassNumber" ColumnName="fkClassNumber" />
                 <ScalarProperty Name="fkType" ColumnName="fkType" />
@@ -421,6 +531,25 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="aspnet_Roles">
+            <EntityTypeMapping TypeName="RussianModel.aspnet_Roles">
+              <MappingFragment StoreEntitySet="aspnet_Roles">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="LoweredRoleName" ColumnName="LoweredRoleName" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="ApplicationId" ColumnName="ApplicationId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="aspnet_UsersInRoles" TypeName="RussianModel.aspnet_UsersInRoles" StoreEntitySet="aspnet_UsersInRoles">
+            <EndProperty Name="aspnet_Users">
+              <ScalarProperty Name="UserId" ColumnName="UserId" />
+            </EndProperty>
+            <EndProperty Name="aspnet_Roles">
+              <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+            </EndProperty>
+          </AssociationSetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

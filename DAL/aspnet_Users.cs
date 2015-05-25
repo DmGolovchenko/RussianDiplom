@@ -14,6 +14,11 @@ namespace DAL
     
     public partial class aspnet_Users
     {
+        public aspnet_Users()
+        {
+            this.aspnet_Roles = new HashSet<aspnet_Roles>();
+        }
+    
         public System.Guid ApplicationId { get; set; }
         public System.Guid UserId { get; set; }
         public string UserName { get; set; }
@@ -24,5 +29,6 @@ namespace DAL
         public Nullable<System.Guid> fkClassNumber { get; set; }
     
         public virtual tClassNumber tClassNumber { get; set; }
+        public virtual ICollection<aspnet_Roles> aspnet_Roles { get; set; }
     }
 }

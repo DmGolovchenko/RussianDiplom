@@ -12,20 +12,19 @@ namespace DAL
     using System;
     using System.Collections.Generic;
     
-    public partial class tTheme
+    public partial class aspnet_Roles
     {
-        public tTheme()
+        public aspnet_Roles()
         {
-            this.tQuestion = new HashSet<tQuestion>();
+            this.aspnet_Users = new HashSet<aspnet_Users>();
         }
     
-        public System.Guid pk { get; set; }
-        public string name { get; set; }
-        public string synonym { get; set; }
-        public System.Guid fkClassNumber { get; set; }
-        public bool deleted { get; set; }
+        public System.Guid ApplicationId { get; set; }
+        public System.Guid RoleId { get; set; }
+        public string RoleName { get; set; }
+        public string LoweredRoleName { get; set; }
+        public string Description { get; set; }
     
-        public virtual tClassNumber tClassNumber { get; set; }
-        public virtual ICollection<tQuestion> tQuestion { get; set; }
+        public virtual ICollection<aspnet_Users> aspnet_Users { get; set; }
     }
 }

@@ -10,6 +10,7 @@ app.controller('manageClassCtrl', ['$scope', 'WebServices',
            webServices.admin.getClasses(
                 {},
                 function success(value) {
+                    $scope.clearInput();
                     $scope.Classes = value;
                 },
                 function error(err) {
@@ -51,7 +52,11 @@ app.controller('manageClassCtrl', ['$scope', 'WebServices',
                 function error(err) {
                     alert('Извините. Произошла ошибка при удалении данных');
                 });
-        }
+       }
+
+       $scope.clearInput = function () {
+           $scope.newClassNumber = '';
+       }
 
 
    }]);

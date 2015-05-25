@@ -13,18 +13,17 @@
 <body ng-app="manageThemeModule" ng-controller="manageThemeCtrl">
     <table class="table table-striped table-bordered" style="width: 300pt">
         <thead>
-            <tr>
-                <td>Номер</td>
-                <td>Количество людей</td>
-                <td>Управление</td>
+            <tr>               
+                <td>Название</td>
+                <td>Для класса</td>
             </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="item in Classes">
-                <td>{{ item.NumberOfClass }}</td>
-                <td>{{ item.CountOfPeople }}</td>
+            <tr ng-repeat="item in Themes">
+                <td>{{ item.Synonym }}</td>
+                <td>{{ item.ClassNumber }}</td>
                 <td>
-                    <button type="button" class="btn btn-default" aria-label="Left Align" ng-click="removeClass($index)">
+                    <button type="button" class="btn btn-default" aria-label="Left Align" ng-click="removeTheme($index)">
                         <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                     </button>
                 </td>
@@ -33,9 +32,10 @@
     </table>
     <table class="table table-striped table-bordered" style="width: 300pt">
         <tr>
-            <td><input type="number" ng-model="newClassNumber" /></td>
+            <td><input type="text" ng-model="newThemeSynonym"/></td>
+            <td><select ng-model="classes" ng-options="item.NumberOfClass for item in Classes"></select></td>
             <td>
-                <button type="button" class="btn btn-default" aria-label="Left Align" ng-click="addClass()">
+                <button type="button" class="btn btn-default" aria-label="Left Align" ng-click="addTheme()">
                     <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                 </button>
             </td>

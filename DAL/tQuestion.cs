@@ -25,10 +25,12 @@ namespace DAL
         public System.Guid fkType { get; set; }
         public System.Guid fkClassNumber { get; set; }
         public bool deleted { get; set; }
+        public System.Guid fkTheme { get; set; }
     
         public virtual ICollection<tAnswer> tAnswer { get; set; }
         public virtual ICollection<tAnswer> tAnswer1 { get; set; }
         public virtual tClassNumber tClassNumber { get; set; }
         public virtual tQuestionType tQuestionType { get; set; }
+        public virtual tTheme tTheme { get; set; }
     }
 }

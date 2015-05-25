@@ -1,6 +1,6 @@
-﻿var app = angular.module('MyLoginModule', ['ngResource']);
+﻿var app = angular.module('MyAdminHomeModule', ['ngResource', 'ngMaterial']);
 
-app.controller('MainController', ['$scope', 'WebServices',
+app.controller('MyAdminHomeCtrl', ['$scope', 'WebServices',
    function ($scope, webServices) {
        $scope.loginClick = function () {
            var user = angular.element('#user').val();

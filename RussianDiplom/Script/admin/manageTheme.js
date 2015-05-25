@@ -3,54 +3,72 @@
 app.controller('manageThemeCtrl', ['$scope', 'WebServices',
    function ($scope, webServices) {
 
-       $scope.Classes = [];
+       $scope.Themes = [];
 
-       // Получаем все классы и кличество людей
+       // Получаем все темы
        $scope.getData = function () {
-           webServices.admin.getClasses(
+           webServices.admin.getThemes(
                 {},
                 function success(value) {
-                    $scope.Classes = value;
+                    $scope.Themes = value;
+                    $scope.clearInput();
                 },
                 function error(err) {
                     alert('Извините. Произошла ошибка при загрузке данных');
                 });
        }
-
        $scope.getData();
 
+       //Получим все классы, которые есть
+       $scope.getClasses = function() {
+           webServices.admin.getClasses(
+               {},
+               function success(value) {
+                   $scope.Classes = value;
+               },
+               function error(err) {
+                   alert('Извините. Произошла ошибка при загрузке данных');
+               });
+       }
+       $scope.getClasses();
+
        // Добавляем новый класс
-       $scope.addClass = function () {
-           if ($scope.newClassNumber) {
-               webServices.admin.addClass(
+       $scope.addTheme = function () {
+           if ($scope.newThemeSynonym && $scope.classes) {
+               webServices.admin.addTheme(
                    {
-                       classNumber: $scope.newClassNumber
+                       synonym : $scope.newThemeSynonym,
+                       classId : $scope.classes.Id
                    },
                    function success(value) {
-                       alert('Класс успешно добавлен');
+                       alert('Тема успешно добавлена');
                        $scope.getData();
                    },
                    function error(err) {
                        alert('Извините. Произошла ошибка при обновлении данных');
                    });
            } else {
-               alert('Сначала заполните поле');
+               alert('Сначала заполните поля');
            }
        }
 
-       // Добавляем новый класс
-       $scope.removeClass = function (index) {
-           webServices.admin.removeClass(
+       // Удаляем тему
+       $scope.removeTheme = function (index) {
+           webServices.admin.removeTheme(
                {
-                   id: $scope.Classes[index].Id
+                   id: $scope.Themes[index].Id
                },
                function success(value) {
-                   alert('Класс успешно удалён');
+                   alert('Тема успешно удалена');
                    $scope.getData();
                },
                function error(err) {
                    alert('Извините. Произошла ошибка при удалении данных');
                });
+       }
+
+       $scope.clearInput = function() {
+           $scope.newThemeSynonym = '';
        }
 
 

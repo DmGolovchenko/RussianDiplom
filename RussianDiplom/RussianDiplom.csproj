@@ -158,14 +158,19 @@
     <Compile Include="WebApi\Controllers\LoginController.cs" />
     <Compile Include="WebApi\Models\ClassNumber.cs" />
     <Compile Include="WebApi\Models\ClassContainer.cs" />
+    <Compile Include="WebApi\Models\QuestionContainer.cs" />
+    <Compile Include="WebApi\Models\QuestionTypeContainer.cs" />
+    <Compile Include="WebApi\Models\RoleContainer.cs" />
+    <Compile Include="WebApi\Models\ThemeContainer.cs" />
+    <Compile Include="WebApi\Models\UsersInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
-    <Content Include="Content\angular-material\angular-material.css" />
-    <Content Include="Content\angular-material\angular-material.min.css" />
+    <Content Include="Styles\angular-material\angular-material.css" />
+    <Content Include="Styles\angular-material\angular-material.min.css" />
     <Content Include="Content\images\log_background.jpg" />
     <Content Include="favicon.ico" />
-    <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Styles\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Areas\HelpPage\Views\Web.config" />
     <Content Include="Areas\HelpPage\Views\Shared\_Layout.cshtml" />
@@ -178,10 +183,10 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\HelpPageApiModel.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
-    <Content Include="Content\fonts\glyphicons-halflings-regular.woff2" />
-    <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Styles\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Styles\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Styles\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Styles\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Scripts\angular-animate.js" />
     <Content Include="Scripts\angular-animate.min.js" />
     <Content Include="Scripts\angular-aria.js" />
@@ -987,7 +992,9 @@
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Script\admin\home.js" />
     <Content Include="Script\admin\manageClass.js" />
+    <Content Include="Script\admin\manageTest.js" />
     <Content Include="Script\admin\manageTheme.js" />
+    <Content Include="Script\admin\manageUser.js" />
     <Content Include="Script\common\routes.js" />
     <Content Include="Script\common\web_services.js" />
     <Content Include="Script\login\login.js" />

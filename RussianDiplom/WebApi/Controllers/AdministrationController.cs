@@ -1,4 +1,4 @@
-﻿using System.Web.UI.WebControls;
+﻿using System.Data.Entity;
 using RussianDiplom.WebApi.Models;
 
 namespace RussianDiplom.WebApi.Controllers
@@ -10,7 +10,6 @@ namespace RussianDiplom.WebApi.Controllers
     using System.Net;
     using System.Net.Http;
     using System.Web.Http;
-    using System.Web.Security;
 
     public class AdministrationController : ApiController
     {
@@ -22,6 +21,7 @@ namespace RussianDiplom.WebApi.Controllers
             _entities.Configuration.UseDatabaseNullSemantics = true;
         }
 
+        #region Classes
         [Route("api/admin/getClasses")]
         [HttpGet]
         public IEnumerable<ClassContainer> GetClasses()
@@ -91,7 +91,223 @@ namespace RussianDiplom.WebApi.Controllers
                     throw new HttpResponseException(resp);
                 }
             }
-        }                       
+        }
+        #endregion
+
+        #region Themes
+        [Route("api/admin/getThemes")]
+        [HttpGet]
+        public IEnumerable<ThemeContainer> GetThemes()
+        {
+            var themes = _entities.tTheme.Where(t => !t.deleted).Select(t => new ThemeContainer
+            {
+                Id = t.pk,
+                Synonym = t.synonym,
+                ClassNumber = _entities.tClassNumber.Where(cn => cn.pk == t.fkClassNumber).Select(cn=>cn.numberOfClass).FirstOrDefault()
+            });
+            return themes;
+        }
+
+        [Route("api/admin/addTheme")]
+        [HttpGet]
+        public void AddTheme(String synonym, Guid classId)
+        {
+            tTheme newTheme = new tTheme
+            {
+                synonym = synonym,
+                fkClassNumber = classId,
+                name = synonym
+            };
+            _entities.tTheme.Add(newTheme);
+
+            try
+            {
+                _entities.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                var resp = new HttpResponseMessage(HttpStatusCode.NotFound)
+                {
+                    Content = new StringContent(string.Format("Ошибка при сохранении данных"))
+                };
+                throw new HttpResponseException(resp);
+            }
+        }
+
+        [Route("api/admin/removeTheme")]
+        [HttpGet]
+        public void RemoveTheme(Guid id)
+        {
+            var oldTheme = _entities.tTheme.FirstOrDefault(t => t.pk == id && !t.deleted);
+
+            if (oldTheme != null)
+            {
+                oldTheme.deleted = true;
+                try
+                {
+                    _entities.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    var resp = new HttpResponseMessage(HttpStatusCode.NotFound)
+                    {
+                        Content = new StringContent(string.Format("Ошибка при сохранении данных"))
+                    };
+                    throw new HttpResponseException(resp);
+                }
+            }
+            else
+            {
+                var resp = new HttpResponseMessage(HttpStatusCode.NotFound)
+                {
+                    Content = new StringContent(string.Format("Такой темы не существует"))
+                };
+                throw new HttpResponseException(resp);
+            }
+        }
+        #endregion
+
+        #region Users
+        [Route("api/admin/getUsers")]
+        [HttpGet]
+        public IEnumerable<UsersInfo> GetUsers()
+        {
+            var users = _entities.aspnet_Users.Select(us => new UsersInfo
+            {
+                Id = us.UserId,
+                LastActivityDate = us.LastActivityDate,
+                Name = us.UserName,
+                Role = _entities.aspnet_Roles
+                    .Where(r => us.aspnet_Roles.Select( ur => ur.RoleId).FirstOrDefault() == r.RoleId )
+                    .Select(r => r.RoleName).FirstOrDefault()
+            });
+            return users;           
+        }
+
+        [Route("api/admin/updateUserRole")]
+        [HttpGet]
+        public void UpdateUserRole(Guid userId, Guid roleId)
+        {
+            var user = _entities.aspnet_Users.FirstOrDefault(us => us.UserId == userId);
+
+            if (user != null)
+            {
+                user.aspnet_Roles = _entities.aspnet_Roles.Where(r => r.RoleId == roleId).ToList();
+            }
+
+            try
+            {
+                _entities.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                var resp = new HttpResponseMessage(HttpStatusCode.NotFound)
+                {
+                    Content = new StringContent(string.Format("Ошибка при сохранении данных"))
+                };
+                throw new HttpResponseException(resp);
+            }
+        }
+
+        [Route("api/admin/getRoles")]
+        [HttpGet]
+        public IEnumerable<RoleContainer> GetRoles()
+        {
+            var roles = _entities.aspnet_Roles.Select(r => new RoleContainer
+            {
+                Id = r.RoleId,
+                Name = r.RoleName
+            });
+            return roles;                      
+        }        
+        #endregion
+
+        #region Tests
+        [Route("api/admin/getQuestions")]
+        [HttpGet]
+        public IEnumerable<QuestionContainer> GetQuestions()
+        {
+            var questions = _entities.tQuestion.Select(q => new QuestionContainer
+            {
+                Id = q.pk,
+                Text = q.questionText,
+                NumberOfClass = _entities.tClassNumber.Where(cn => q.fkType == cn.pk).Select(cn=>cn.numberOfClass).FirstOrDefault(),
+                Theme = _entities.tTheme.Where(t => q.fkTheme == t.pk).Select(t => t.synonym).FirstOrDefault(),
+                Type = _entities.tQuestionType.Where(qt => q.fkType == qt.pk).Select(qt => qt.synonym).FirstOrDefault()
+            });
+            return questions;
+        }
+
+        [Route("api/admin/getQuestionTypes")]
+        [HttpGet]
+        public IEnumerable<QuestionTypeContainer> GetQuestionTypes()
+        {
+            var types = _entities.tQuestionType.Select(qt => new QuestionTypeContainer
+            {
+                Id = qt.pk,
+                Synonym = qt.synonym                
+            });
+            return types;
+        }
+
+        //[Route("api/admin/addQuestion")]
+        //[HttpGet]
+        //public void AddQuestion(String synonym, Guid classId)
+        //{
+        //    tTheme newTheme = new tTheme
+        //    {
+        //        synonym = synonym,
+        //        fkClassNumber = classId,
+        //        name = synonym
+        //    };
+        //    _entities.tTheme.Add(newTheme);
+
+        //    try
+        //    {
+        //        _entities.SaveChanges();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        var resp = new HttpResponseMessage(HttpStatusCode.NotFound)
+        //        {
+        //            Content = new StringContent(string.Format("Ошибка при сохранении данных"))
+        //        };
+        //        throw new HttpResponseException(resp);
+        //    }
+        //}
+
+        //[Route("api/admin/removeQuestion")]
+        //[HttpGet]
+        //public void RemoveQuestion(Guid id)
+        //{
+        //    var oldTheme = _entities.tTheme.FirstOrDefault(t => t.pk == id && !t.deleted);
+
+        //    if (oldTheme != null)
+        //    {
+        //        oldTheme.deleted = true;
+        //        try
+        //        {
+        //            _entities.SaveChanges();
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            var resp = new HttpResponseMessage(HttpStatusCode.NotFound)
+        //            {
+        //                Content = new StringContent(string.Format("Ошибка при сохранении данных"))
+        //            };
+        //            throw new HttpResponseException(resp);
+        //        }
+        //    }
+        //    else
+        //    {
+        //        var resp = new HttpResponseMessage(HttpStatusCode.NotFound)
+        //        {
+        //            Content = new StringContent(string.Format("Такой темы не существует"))
+        //        };
+        //        throw new HttpResponseException(resp);
+        //    }
+        //}
+        #endregion
 
     }
 }
