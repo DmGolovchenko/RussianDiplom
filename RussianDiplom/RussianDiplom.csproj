@@ -166,6 +166,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
+    <Content Include="Content\images\admin_background.png" />
+    <Content Include="Styles\admin\adminHome.css" />
     <Content Include="Styles\angular-material\angular-material.css" />
     <Content Include="Styles\angular-material\angular-material.min.css" />
     <Content Include="Content\images\log_background.jpg" />
@@ -1005,6 +1007,7 @@
     <Content Include="Styles\bootstrap\bootstrap.min.css" />
     <Content Include="Styles\login\login_style.css" />
     <Content Include="Template\Admin\AdminHome.html" />
+    <Content Include="Template\Admin\AdminTabs.html" />
     <Content Include="Template\Admin\ManageClass.html" />
     <Content Include="Template\Admin\ManageTest.html" />
     <Content Include="Template\Admin\ManageTheme.html" />

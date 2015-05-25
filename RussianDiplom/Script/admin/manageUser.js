@@ -1,10 +1,5 @@
-﻿var app = angular.module('manageUserModule', ['ngResource']);
-
-app.controller('manageUserCtrl', ['$scope', 'WebServices',
+﻿app.controller('manageUserCtrl', ['$scope', 'WebServices',
    function ($scope, webServices) {
-
-       //$scope.Users = [];
-
        // Получаем всех пользователей
        $scope.getUsers = function () {
            webServices.admin.getUsers(

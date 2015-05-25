@@ -1,6 +1,4 @@
-﻿var app = angular.module('manageClassModule', ['ngResource']);
-
-app.controller('manageClassCtrl', ['$scope', 'WebServices',
+﻿app.controller('manageClassCtrl', ['$scope', 'WebServices',
    function ($scope, webServices) {
 
        $scope.Classes = [];

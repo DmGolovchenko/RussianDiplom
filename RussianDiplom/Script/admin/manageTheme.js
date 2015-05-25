@@ -1,6 +1,4 @@
-﻿var app = angular.module('manageThemeModule', ['ngResource']);
-
-app.controller('manageThemeCtrl', ['$scope', 'WebServices',
+﻿app.controller('manageThemeCtrl', ['$scope', 'WebServices',
    function ($scope, webServices) {
 
        $scope.Themes = [];

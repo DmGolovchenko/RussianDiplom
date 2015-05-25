@@ -1,6 +1,4 @@
-﻿var app = angular.module('manageTestModule', ['ngResource']);
-
-app.controller('manageTestCtrl', ['$scope', 'WebServices',
+﻿app.controller('manageTestCtrl', ['$scope', 'WebServices',
    function ($scope, webServices) {
 
        // Получим все вопросы

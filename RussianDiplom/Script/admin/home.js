@@ -1,24 +1,21 @@
-﻿var app = angular.module('MyAdminHomeModule', ['ngResource', 'ngMaterial']);
+﻿var app = angular.module('MyAdminHomeModule', ['ngResource', 'ngMaterial', 'ngRoute']);
+
+app.config(function ($routeProvider, $locationProvider) {
+    $routeProvider
+        .when('/', {
+            templateUrl: '/Template/Admin/AdminTabs.html',
+            controller: 'MyAdminHomeCtrl'
+        });      
+
+    $locationProvider.html5Mode(false).hashPrefix('!');
+});
 
 app.controller('MyAdminHomeCtrl', ['$scope', 'WebServices',
    function ($scope, webServices) {
-       $scope.loginClick = function () {
-           var user = angular.element('#user').val();
-           var pass = angular.element('#password').val();
-
-           if (user != null && pass != null) {
-               webServices.users.loginUser(
-                   {
-                       Username: user,
-                       Password: pass
-                   },
-                   function success(value) {
-                       location.path("~/Template/AdminHome.html");
-                   },
-                   function error(err) {
-                       alert('No');
-                   }
-                );
-           }
-       }
+       $scope.template= {
+           'user': '/Template/Admin/ManageUser.html',
+           'theme': '/Template/Admin/ManageTheme.html',
+           'class': '/Template/Admin/ManageClass.html',
+           'test': '/Template/Admin/ManageTest.html'
+       }       
    }]);
