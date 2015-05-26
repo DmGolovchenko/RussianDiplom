@@ -1,34 +1,51 @@
 ﻿<div ng-controller="manageClassCtrl">
-    <table class="table table-striped table-bordered" style="width: 300pt">
-        <thead>
+    <h1>Управление классами</h1>
+    <p class="titleInfo">Здесь вы можете удалять и добавлять новые классы, а также просматривать статистику пользователей по номерам классов</p>
+    <h2 class="subtitle">Просмотр / Удаление</h2>
+    <div ng-show="class.inProcess">
+        <md-progress-circular class="md-accent circularRound" md-mode="indeterminate"></md-progress-circular>
+    </div>
+    <div ng-show="class.Empty && !class.inProcess">
+        <p class="emptyMessage">Здесь будут отображены все классы</p>
+    </div>
+    <div ng-show="!class.inProcess && !class.Empty">
+        <table class="table table-striped table-bordered classTable">
+            <thead>
+                <tr>
+                    <td>Номер</td>
+                    <td>Количество людей</td>
+                    <td>Удаление</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="item in class.Classes">
+                    <td style="width: 75pt">{{ item.NumberOfClass }}</td>
+                    <td style="width: 150pt">{{ item.CountOfPeople }}</td>
+                    <td style="width: 75pt">
+                        <button type="button" class="btn btn-default manageOneButton" aria-label="Left Align" ng-click="class.removeClass($index)">
+                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                            <md-tooltip md-direction="right">Удалить</md-tooltip>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <h2 class="subtitle">Добавление</h2>
+    <div ng-show="class.inProcess">
+        <md-progress-circular class="md-accent circularRound" md-mode="indeterminate"></md-progress-circular>
+    </div>
+    <div ng-show="!class.inProcess">
+        <table class="table table-striped table-bordered classTable">
             <tr>
-                <td>Номер</td>
-                <td>Количество людей</td>
-                <td>Управление</td>
-            </tr>
-        </thead>
-        <tbody>
-            <tr ng-repeat="item in Classes">
-                <td>{{ item.NumberOfClass }}</td>
-                <td>{{ item.CountOfPeople }}</td>
-                <td>
-                    <button type="button" class="btn btn-default" aria-label="Left Align" ng-click="removeClass($index)">
-                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                <td style="width: 225pt"><input type="number" class="inputWidth" ng-model="class.newClassNumber" placeholder="Номер класса" /></td>
+                <td style="width: 75pt">
+                    <button type="button" class="btn btn-default manageOneButton" aria-label="Left Align" ng-click="class.addClass()">
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                        <md-tooltip md-direction="top">Добавить</md-tooltip>
                     </button>
                 </td>
             </tr>
-        </tbody>
-    </table>
-
-    <table class="table table-striped table-bordered" style="width: 300pt">
-        <tr>
-            <td><input type="number" ng-model="newClassNumber" /></td>
-            <td>
-                <button type="button" class="btn btn-default" aria-label="Left Align" ng-click="addClass()">
-                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-                </button>
-            </td>
-        </tr>
-    </table>
-
+        </table>
+    </div>    
 </div>

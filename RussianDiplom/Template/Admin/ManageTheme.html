@@ -1,32 +1,57 @@
 ﻿<div ng-controller="manageThemeCtrl">
-    <table class="table table-striped table-bordered" style="width: 300pt">
+    <h1>Управление темами</h1>
+    <p class="titleInfo">Здесь вы можете удалять и добавлять темы</p>
+    <h2 class="subtitle">Просмотр / Удаление</h2>
+    <div ng-show="theme.inProcess">
+        <md-progress-circular class="md-accent circularRound" md-mode="indeterminate"></md-progress-circular>
+    </div>
+    <div ng-show="theme.Empty && !theme.inProcess">
+        <p class="emptyMessage">Здесь будут отображены все темы</p>
+    </div>
+    <table ng-show="!theme.inProcess && !theme.Empty " class="table table-striped table-bordered themeTable">
         <thead>
             <tr>
-                <td>Название</td>
-                <td>Для класса</td>
+                <td style="width: 450pt">Название</td>
+                <td style="width: 100pt">Для класса</td>
+                <td style="width: 50pt">Удаление</td>
             </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="item in Themes">
-                <td>{{ item.Synonym }}</td>
-                <td>{{ item.ClassNumber }}</td>
-                <td>
-                    <button type="button" class="btn btn-default" aria-label="Left Align" ng-click="removeTheme($index)">
+            <tr ng-repeat="item in theme.Themes">
+                <td style="width: 450pt">{{ item.Synonym }}</td>
+                <td style="width: 100pt">{{ item.ClassNumber }}</td>
+                <td style="width: 50pt">
+                    <button type="button" class="btn btn-default manageOneButton" aria-label="Left Align" ng-click="theme.removeTheme($index)">
                         <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                        <md-tooltip md-direction="right">Удалить</md-tooltip>
                     </button>
                 </td>
             </tr>
         </tbody>
     </table>
-    <table class="table table-striped table-bordered" style="width: 300pt">
-        <tr>
-            <td><input type="text" ng-model="newThemeSynonym" /></td>
-            <td><select ng-model="classes" ng-options="item.NumberOfClass for item in Classes"></select></td>
-            <td>
-                <button type="button" class="btn btn-default" aria-label="Left Align" ng-click="addTheme()">
-                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-                </button>
-            </td>
-        </tr>
-    </table>
+    <h2 class="subtitle">Добавление</h2>
+    <div ng-show="theme.inProcess">
+        <md-progress-circular class="md-accent circularRound" md-mode="indeterminate"></md-progress-circular>
+    </div>
+    <div ng-show="!theme.inProcess">
+        <table class="table table-striped table-bordered themeTable">
+            <tr>
+                <td style="width: 400pt"><input type="text" ng-model="theme.newThemeSynonym" placeholder="Название темы" class="inputWidth"/></td>
+                <td style="width: 90pt">
+                    <md-select placeholder="Класс" ng-model="theme.newThemeId" class="inputSelect">
+                        <md-option ng-repeat="item in theme.Classes"
+                                   value="{{item.Id}}">
+                            {{item.NumberOfClass}}
+                        </md-option>
+                    </md-select>
+                </td>
+                <td style="width: 60pt">
+                    <button type="button" class="btn btn-default manageOneButton" aria-label="Left Align" ng-click="theme.addTheme()">
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                        <md-tooltip md-direction="top">Добавить</md-tooltip>
+                    </button>
+                </td>
+            </tr>
+        </table>
+    </div>
 </div>

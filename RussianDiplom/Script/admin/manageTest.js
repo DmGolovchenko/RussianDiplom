@@ -1,61 +1,76 @@
 ﻿app.controller('manageTestCtrl', ['$scope', 'WebServices',
    function ($scope, webServices) {
+       $scope.test = {};
+       $scope.test.Questions = [];
+       $scope.test.Empty = true;
 
        // Получим все вопросы
-       $scope.getQuestions = function () {
+       $scope.test.getQuestions = function () {
            webServices.admin.getQuestions(
                 {},
                 function success(value) {
-                    $scope.Questions = value;
-                    $scope.clearInput();
+                    if (value.length) {
+                        $scope.test.Empty = false;
+                    } else {
+                        $scope.test.Empty = true;
+                    }
+                    $scope.test.Questions = value;
+                    $scope.test.clearInput();
                 },
                 function error(err) {
                     alert('Извините. Произошла ошибка при загрузке данных');
                 });
-       }
-       $scope.getQuestions();
+       }         
 
        //Получим все классы
-       $scope.getClasses = function () {
+       $scope.test.getClasses = function () {
            webServices.admin.getClasses(
                {},
                function success(value) {
-                   $scope.Classes = value;
+                   $scope.test.Classes = value;
                },
                function error(err) {
                    alert('Извините. Произошла ошибка при загрузке данных');
                });
-       }
-       $scope.getClasses();
+       }       
 
        //Получим все темы
-       $scope.getThemes = function () {
+       $scope.test.getThemes = function () {
            webServices.admin.getThemes(
                {},
                function success(value) {
-                   $scope.Themes = value;
+                   $scope.test.Themes = value;
                },
                function error(err) {
                    alert('Извините. Произошла ошибка при загрузке данных');
                });
-       }
-       $scope.getThemes();
+       }       
 
        //Получим все типы
-       $scope.getTypes = function () {
+       $scope.test.getTypes = function () {
            webServices.admin.getQuestionTypes(
                {},
                function success(value) {
-                   $scope.Types = value;
+                   $scope.test.Types = value;
                },
                function error(err) {
                    alert('Извините. Произошла ошибка при загрузке данных');
                });
        }
-       $scope.getTypes();      
 
-       $scope.clearInput = function () {
-           $scope.newThemeSynonym = '';
+       $scope.test.getData = function () {
+           $scope.test.inProcess = true;
+           $scope.test.getQuestions();
+           $scope.test.getClasses();
+           $scope.test.getThemes();
+           $scope.test.getTypes();
+           $scope.test.inProcess = false;
+       }
+       $scope.test.getData();
+
+
+       $scope.test.clearInput = function () {
+           $scope.test.newThemeSynonym = '';
        }
 
 

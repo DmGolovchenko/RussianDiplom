@@ -38,7 +38,7 @@ namespace RussianDiplom.Controllers
                 }
             }
             else return 1;
-        }
+        }       
 
         [AllowAnonymous]
         [Route("api/user/register")]
@@ -50,6 +50,7 @@ namespace RussianDiplom.Controllers
 
             if (createStatus == MembershipCreateStatus.Success)
             {
+                Roles.AddUserToRole(Username,"SimpleUser");
                 FormsAuthentication.SetAuthCookie(Username, false);
                 return createStatus.ToString();
             }

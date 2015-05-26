@@ -1,24 +1,101 @@
 ﻿<div ng-controller="manageUserCtrl">
-    <table class="table table-striped table-bordered" style="width: 300pt">
-        <thead>
+    <h1>Управление правами пользователей</h1>
+    <p class="titleInfo">Здесь вы можете редактировать права пользователей</p>
+    <h2 class="subtitle">Просмотр / редактирование</h2>
+    <div ng-show="user.inProcess">
+        <md-progress-circular class="md-accent circularRound" md-mode="indeterminate"></md-progress-circular>
+    </div>
+    <div ng-show="user.Empty && !user.inProcess">
+        <p class="emptyMessage">Здесь будут отображены пользователи-администраторы</p>
+    </div>
+    <div ng-show="!user.inProcess && !user.Empty">             
+        <table class="table table-striped table-bordered userTable">
+            <thead>
             <tr>
-                <td>Имя</td>
-                <td>Последний визит</td>
-                <td>Роль</td>
+                <td syle="width:150pt">Имя</td>
+                <td syle="width:150pt">Последний визит</td>
+                <td syle="width:150pt">Роль</td>
+                <td syle="width:50pt">Редактирование</td>
             </tr>
-        </thead>
-        <tbody>
-            <tr ng-repeat="item in Users">
-                <td>{{ item.Name }}</td>
-                <td>{{ item.LastActivityDate }}</td>
-                <td>{{ item.Role }}</td>
-                <!--<td><select ng-model="roles" ng-options="item.Name for item in Roles"></select></td>-->
-                <td>
-                    <button type="button" class="btn btn-default" aria-label="Left Align" ng-click="updateUserRole($index)">
-                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+            </thead>
+            <tbody>
+            <tr ng-repeat="item in user.AdminUsers | filter:{Role:'Administrator'}">
+                <td syle="width:150pt">{{ item.Name }}</td>
+                <td syle="width:150pt">{{ item.LastActivityDate }}</td>
+                <td ng-if="!item.isEdit" syle="width:150pt">{{ item.Role }}</td>
+                <td ng-if="!item.isEdit" syle="width:50pt">
+                    <button type="button" class="btn btn-default manageOneButton" aria-label="Left Align" ng-click="user.editUserRole(item.Id)">                           
+                        <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                        <md-tooltip md-direction="right">
+                            Редактировать
+                        </md-tooltip>
+                    </button>
+                </td>
+                <td ng-if="item.isEdit" syle="width:150pt">
+                    <md-select placeholder="Роль" ng-model="user.AllRoles" class="inputSelect">
+                        <md-option ng-repeat="item in user.Roles" value="{{item.Id}}">{{item.Name}}</md-option>
+                    </md-select>
+                </td>
+                <td ng-if="item.isEdit" syle="width:50pt">
+                    <button type="button" class="btn btn-default manageTwoButton" aria-label="Left Align" ng-click="user.updateUserRole($index)">
+                        <span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>
+                        <md-tooltip md-direction="top">Применить</md-tooltip>
+                    </button>
+                    <button type="button" class="btn btn-default manageTwoButton" aria-label="Left Align" ng-click="user.cancleEditUserRole($index)">
+                        <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span>
+                        <md-tooltip md-direction="top">Отменить</md-tooltip>
                     </button>
                 </td>
             </tr>
-        </tbody>
-    </table>
+            </tbody>
+        </table>
+    </div>
+    <h2 class="subtitle">Поиск пользователя по имени</h2>
+    <div ng-show="user.inProcess">
+        <md-progress-circular class="md-accent circularRound" md-mode="indeterminate"></md-progress-circular>
+    </div>
+    <div ng-show="!user.inProcess">           
+        <md-input-container class="inputUserName">
+            <label>Имя</label>
+            <input ng-model="user.UserNameFind">
+        </md-input-container>     
+        <table class="table table-striped table-bordered userTable">
+            <thead>
+            <tr>
+                <td syle="width:150pt">Имя</td>
+                <td syle="width:150pt">Последний визит</td>
+                <td syle="width:150pt">Роль</td>
+                <td syle="width:50pt">Редактирование</td>
+            </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="item in user.AdminUsers | filter:{Name:user.UserNameFind, Role: 'SimpleUser'}">
+                    <td syle="width:150pt">{{ item.Name }}</td>
+                    <td syle="width:150pt">{{ item.LastActivityDate }}</td>
+                    <td ng-if="!item.isEdit" syle="width:150pt">{{ item.Role }}</td>
+                    <td ng-if="!item.isEdit" syle="width:50pt">
+                        <button type="button" class="btn btn-default manageOneButton" aria-label="Left Align" ng-click="user.editUserRole(item.Id)">
+                            <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                            <md-tooltip md-direction="right">Редактировать</md-tooltip>
+                        </button>
+                    </td>
+                    <td ng-if="item.isEdit" syle="width:150pt">
+                        <md-select placeholder="Роль" ng-model="user.AllRoles" class="inputSelect">
+                            <md-option ng-repeat="item in user.Roles" value="{{item.Id}}">{{item.Name}}</md-option>
+                        </md-select>
+                    </td>
+                    <td ng-if="item.isEdit" syle="width:50pt">
+                        <button type="button" class="btn btn-default " aria-label="Left Align" ng-click="user.updateUserRole($index)">
+                            <span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>
+                            <md-tooltip md-direction="top">Применить</md-tooltip>
+                        </button>
+                        <button type="button" class="btn btn-default manageTwoButton" aria-label="Left Align" ng-click="user.cancleEditUserRole($index)">
+                            <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span>
+                            <md-tooltip md-direction="top">Отменить</md-tooltip>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>

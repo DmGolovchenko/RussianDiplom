@@ -1,46 +1,72 @@
 ﻿<div ng-controller="manageTestCtrl">
-    <table class="table table-striped table-bordered" style="width: 300pt">
-        <thead>
-            <tr>
-                <td>Класс</td>
-                <td>Тема</td>
-                <td>Вопрос</td>
-                <td>Тип</td>
-                <td>Удаление</td>
-            </tr>
-        </thead>
-        <tbody>
-            <tr ng-repeat="item in Questions">
-                <td>{{ item.NumberOfClass }}</td>
-                <td>{{ item.Theme }}</td>
-                <td>{{ item.Text }}</td>
-                <td>{{ item.Type }}</td>
-                <td>
-                    <button type="button" class="btn btn-default" aria-label="Left Align" ng-click="removeQuestion($index)">
-                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                    </button>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-
-    <div>
-        Добавление вопроса
-        <div>
-            Класс
-            <select ng-model="class" ng-options="item.NumberOfClass for item in Classes"></select>
+    <h1>Управление вопросами тестов</h1>
+    <p class="titleInfo">Здесь вы можете удалять и изменять вопросы</p>
+    <h2 class="subtitle">Просмотр / Изменения</h2>
+    <div ng-show="test.inProcess">
+        <md-progress-circular class="md-accent circularRound" md-mode="indeterminate"></md-progress-circular>
+    </div>
+    <div ng-show="test.Empty && !test.inProcess">
+        <p class="emptyMessage">Здесь будут отображены все вопросы</p>
+    </div>
+    <div ng-show="!test.inProcess && !test.Empty">
+        <table class="table table-striped table-bordered testTable">
+            <thead>
+                <tr>
+                    <td>Класс</td>
+                    <td>Тема</td>
+                    <td>Вопрос</td>
+                    <td>Тип</td>
+                    <td>Удаление</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="item in test.Questions">
+                    <td>{{ item.NumberOfClass }}</td>
+                    <td>{{ item.Theme }}</td>
+                    <td>{{ item.Text }}</td>
+                    <td>{{ item.Type }}</td>
+                    <td>
+                        <button type="button" class="btn btn-default" aria-label="Left Align" ng-click="test.removeQuestion($index)">
+                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                            <md-tooltip md-direction="right">Удалить</md-tooltip>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>        
+    </div>
+    <h2 class="subtitle">Добавление</h2>
+    <div ng-show="test.inProcess">
+        <md-progress-circular class="md-accent circularRound" md-mode="indeterminate"></md-progress-circular>
+    </div>
+    <div ng-show="!test.inProcess" class="divNewQuestion">
+        <div class="newQuestionParam">
+            <label class="questionParamStyle">Класс</label>            
+            <md-select placeholder="Класс" ng-model="test.class" class="inputSelect">
+                <md-option ng-repeat="item in test.Classes" value="{{item.Id}}">{{item.NumberOfClass}}</md-option>
+            </md-select>
         </div>
-        <div>
-            Тема
-            <select ng-model="theme" ng-options="item.Synonym for item in Themes"></select>
+        <div class="newQuestionParam">
+            <label class="questionParamStyle">Тема</label>
+            <md-select placeholder="Тема" ng-model="test.theme" class="inputSelect">
+                <md-option ng-repeat="item in test.Themes" value="{{item.Id}}">{{item.Synonym}}</md-option>
+            </md-select>
         </div>
-        <div>
-            Текст вопроса
-            <textarea ng-model="questionText"></textarea>
+        <div class="newQuestionParam">
+            <label class="questionParamStyle">Тип</label>
+            <md-select placeholder="Тип" ng-model="test.type" class="inputSelect">
+                <md-option ng-repeat="item in test.Types" value="{{item.Id}}">{{item.Synonym}}</md-option>
+            </md-select>
+        </div>    
+        <div class="newQuestionForm">
+            <label class="questionParamStyle">Вопрос</label>
+            <md-input-container flex>
+                <label>Текст вопроса</label>
+                <textarea ng-model="test.questionText" columns="1" md-maxlength="500"></textarea>
+            </md-input-container>
         </div>
-        <div>
-            Тип
-            <select ng-model="type" ng-options="item.Synonym for item in Types"></select>
-        </div>
+        <div class="newQuestionAnswersForm">
+            <label class="questionParamStyle">Ответ(ы)</label>            
+        </div>   
     </div>
 </div>

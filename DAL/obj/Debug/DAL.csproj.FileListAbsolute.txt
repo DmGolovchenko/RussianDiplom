@@ -1,13 +1,3 @@
-C:\Users\dimat_000\Documents\Visual Studio 2013\Projects\RussianDiplom\RussianDiplom\DAL\bin\DAL.dll.config
-C:\Users\dimat_000\Documents\Visual Studio 2013\Projects\RussianDiplom\RussianDiplom\DAL\bin\DAL.dll
-C:\Users\dimat_000\Documents\Visual Studio 2013\Projects\RussianDiplom\RussianDiplom\DAL\bin\DAL.pdb
-C:\Users\dimat_000\Documents\Visual Studio 2013\Projects\RussianDiplom\RussianDiplom\DAL\bin\EntityFramework.dll
-C:\Users\dimat_000\Documents\Visual Studio 2013\Projects\RussianDiplom\RussianDiplom\DAL\bin\EntityFramework.SqlServer.dll
-C:\Users\dimat_000\Documents\Visual Studio 2013\Projects\RussianDiplom\RussianDiplom\DAL\bin\EntityFramework.xml
-C:\Users\dimat_000\Documents\Visual Studio 2013\Projects\RussianDiplom\RussianDiplom\DAL\bin\EntityFramework.SqlServer.xml
-C:\Users\dimat_000\Documents\Visual Studio 2013\Projects\RussianDiplom\RussianDiplom\DAL\obj\Debug\DAL.dll
-C:\Users\dimat_000\Documents\Visual Studio 2013\Projects\RussianDiplom\RussianDiplom\DAL\obj\Debug\DAL.pdb
-C:\Users\dimat_000\Documents\Visual Studio 2013\Projects\RussianDiplom\RussianDiplom\DAL\obj\Debug\DAL.csprojResolveAssemblyReference.cache
 C:\Users\dgolovchenko\Documents\Visual Studio 2013\Projects\Russian-Diplom\RussianDiplom\DAL\bin\DAL.dll.config
 C:\Users\dgolovchenko\Documents\Visual Studio 2013\Projects\Russian-Diplom\RussianDiplom\DAL\bin\DAL.dll
 C:\Users\dgolovchenko\Documents\Visual Studio 2013\Projects\Russian-Diplom\RussianDiplom\DAL\bin\DAL.pdb
@@ -18,3 +8,13 @@ C:\Users\dgolovchenko\Documents\Visual Studio 2013\Projects\Russian-Diplom\Russi
 C:\Users\dgolovchenko\Documents\Visual Studio 2013\Projects\Russian-Diplom\RussianDiplom\DAL\obj\Debug\DAL.csprojResolveAssemblyReference.cache
 C:\Users\dgolovchenko\Documents\Visual Studio 2013\Projects\Russian-Diplom\RussianDiplom\DAL\obj\Debug\DAL.dll
 C:\Users\dgolovchenko\Documents\Visual Studio 2013\Projects\Russian-Diplom\RussianDiplom\DAL\obj\Debug\DAL.pdb
+C:\Users\dimat_000\Documents\Visual Studio 2013\Projects\RussianDiplom\RussianDiplom\DAL\bin\DAL.dll.config
+C:\Users\dimat_000\Documents\Visual Studio 2013\Projects\RussianDiplom\RussianDiplom\DAL\bin\DAL.dll
+C:\Users\dimat_000\Documents\Visual Studio 2013\Projects\RussianDiplom\RussianDiplom\DAL\bin\DAL.pdb
+C:\Users\dimat_000\Documents\Visual Studio 2013\Projects\RussianDiplom\RussianDiplom\DAL\bin\EntityFramework.dll
+C:\Users\dimat_000\Documents\Visual Studio 2013\Projects\RussianDiplom\RussianDiplom\DAL\bin\EntityFramework.SqlServer.dll
+C:\Users\dimat_000\Documents\Visual Studio 2013\Projects\RussianDiplom\RussianDiplom\DAL\bin\EntityFramework.xml
+C:\Users\dimat_000\Documents\Visual Studio 2013\Projects\RussianDiplom\RussianDiplom\DAL\bin\EntityFramework.SqlServer.xml
+C:\Users\dimat_000\Documents\Visual Studio 2013\Projects\RussianDiplom\RussianDiplom\DAL\obj\Debug\DAL.csprojResolveAssemblyReference.cache
+C:\Users\dimat_000\Documents\Visual Studio 2013\Projects\RussianDiplom\RussianDiplom\DAL\obj\Debug\DAL.dll
+C:\Users\dimat_000\Documents\Visual Studio 2013\Projects\RussianDiplom\RussianDiplom\DAL\obj\Debug\DAL.pdb

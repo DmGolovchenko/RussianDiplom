@@ -1,36 +1,47 @@
 ﻿app.controller('manageClassCtrl', ['$scope', 'WebServices',
    function ($scope, webServices) {
-
-       $scope.Classes = [];
+       $scope.class = {};
+       $scope.class.Classes = [];
+       $scope.class.Empty = true;
 
        // Получаем все классы и кличество людей
-       $scope.getData = function() {           
+       $scope.class.getData = function () {
+           $scope.class.inProcess = true;
            webServices.admin.getClasses(
                 {},
                 function success(value) {
-                    $scope.clearInput();
-                    $scope.Classes = value;
+                    if (value.length) {
+                        $scope.class.Empty = false;
+                    } else {
+                        $scope.class.Empty = true;
+                    }
+                    $scope.class.clearInput();
+                    $scope.class.Classes = value;
+                    $scope.class.inProcess = false;
                 },
                 function error(err) {
                     alert('Извините. Произошла ошибка при загрузке данных');
+                    $scope.class.inProcess = false;
                 });
        }
 
-       $scope.getData();
+       $scope.class.getData();
 
        // Добавляем новый класс
-       $scope.addClass = function () {
-           if ($scope.newClassNumber) {
+       $scope.class.addClass = function () {           
+           if ($scope.class.newClassNumber) {
+               $scope.class.inProcess = true;
                webServices.admin.addClass(
                    {
-                       classNumber: $scope.newClassNumber
+                       classNumber: $scope.class.newClassNumber
                    },
                    function success(value) {
                        alert('Класс успешно добавлен');
-                       $scope.getData();                     
+                       $scope.class.getData();
                    },
                    function error(err) {
                        alert('Извините. Произошла ошибка при обновлении данных');
+                       $scope.class.inProcess = false;
                    });
            } else {
                alert('Сначала заполните поле');
@@ -38,22 +49,24 @@
        }
 
        // Добавляем новый класс
-       $scope.removeClass = function (index) {          
+       $scope.class.removeClass = function (index) {
+           $scope.class.inProcess = true;
             webServices.admin.removeClass(
                 {
-                    id: $scope.Classes[index].Id
+                    id: $scope.class.Classes[index].Id
                 },
                 function success(value) {
                     alert('Класс успешно удалён');
-                    $scope.getData();
+                    $scope.class.getData();
                 },
                 function error(err) {
                     alert('Извините. Произошла ошибка при удалении данных');
+                    $scope.class.inProcess = false;
                 });
        }
 
-       $scope.clearInput = function () {
-           $scope.newClassNumber = '';
+       $scope.class.clearInput = function () {
+           $scope.class.newClassNumber = '';
        }
 
 

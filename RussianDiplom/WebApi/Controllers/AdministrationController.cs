@@ -31,7 +31,7 @@ namespace RussianDiplom.WebApi.Controllers
                 Id = cn.pk,
                 NumberOfClass = cn.numberOfClass,
                 CountOfPeople = _entities.aspnet_Users.Count(us => us.fkClassNumber == cn.pk)
-            });
+            }).OrderBy(res => res.NumberOfClass);
             return classes;        
         }
 
