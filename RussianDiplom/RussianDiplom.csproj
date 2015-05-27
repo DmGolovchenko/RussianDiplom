@@ -162,6 +162,7 @@
     <Compile Include="WebApi\Models\QuestionTypeContainer.cs" />
     <Compile Include="WebApi\Models\RightTestAnswers.cs" />
     <Compile Include="WebApi\Models\RoleContainer.cs" />
+    <Compile Include="WebApi\Models\TestQuestion.cs" />
     <Compile Include="WebApi\Models\ThemeContainer.cs" />
     <Compile Include="WebApi\Models\UsersInfo.cs" />
   </ItemGroup>

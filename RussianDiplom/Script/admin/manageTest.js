@@ -6,6 +6,7 @@
 
        // Получим все вопросы
        $scope.test.getQuestions = function () {
+           $scope.test.inProcess = true;
            webServices.admin.getQuestions(
                 {},
                 function success(value) {
@@ -19,6 +20,7 @@
                 },
                 function error(err) {
                     alert('Извините. Произошла ошибка при загрузке данных');
+                    $scope.test.inProcess = false;
                 });
        }         
 
@@ -70,7 +72,8 @@
 
 
        $scope.test.clearInput = function () {
-           $scope.test.newThemeSynonym = '';
+           $scope.test.theme = $scope.test.class = $scope.test.type = $scope.test.questionText = '';
+           $scope.test.generate4EmptyTestAnswers();
        }
 
        $scope.test.generate4EmptyTestAnswers = function () {
@@ -87,18 +90,37 @@
            $scope.test.testAnswers.push(emptyTestAnswer);
        }
 
-       $scope.test.createTestQuestion = function() {
-           webServices.admin.createTestQuestion(
+       $scope.test.removeQuestion = function (id) {
+           $scope.test.inProcess = true;
+           webServices.admin.removeQuestion(
                {
-                   themeId: $scope.test.theme,
-                   question: $scope.test.questionText,
-                   answers : $scope.test.testAnswers
+                   id: id
                },
                function success(value) {
-                   $scope.test.getQuestions();
+                   $scope.test.getData();
                },
                function error(err) {
                    alert('Извините. Произошла ошибка при обновлении данных');
+                   $scope.test.inProcess = false;
+               });
+       }
+
+       $scope.test.createTestQuestion = function () {
+           $scope.test.inProcess = true;
+           webServices.admin.createTestQuestion(
+               {
+                   ThemeId: $scope.test.theme,
+                   ClassId: $scope.test.class,
+                   TypeName: $scope.test.type,
+                   Question: $scope.test.questionText,
+                   Answers : $scope.test.testAnswers
+               },
+               function success(value) {
+                   $scope.test.getData();
+               },
+               function error(err) {
+                   alert('Извините. Произошла ошибка при обновлении данных');
+                   $scope.test.inProcess = false;
                });
        }
 

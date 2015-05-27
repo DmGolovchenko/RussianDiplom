@@ -53,7 +53,7 @@
     <Key>
       <PropertyRef Name="pk" />
     </Key>
-    <Property Name="pk" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="pk" Type="uniqueidentifier" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="questionText" Type="nvarchar" MaxLength="500" Nullable="false" />
     <Property Name="fkType" Type="uniqueidentifier" Nullable="false" />
     <Property Name="fkClassNumber" Type="uniqueidentifier" Nullable="false" />

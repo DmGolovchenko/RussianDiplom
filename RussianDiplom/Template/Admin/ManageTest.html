@@ -26,7 +26,7 @@
                     <td>{{ item.Text }}</td>
                     <td>{{ item.Type }}</td>
                     <td>
-                        <button type="button" class="btn btn-default" aria-label="Left Align" ng-click="test.removeQuestion($index)">
+                        <button type="button" class="btn btn-default manageOneButton" aria-label="Left Align" ng-click="test.removeQuestion(item.Id)">
                             <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                             <md-tooltip md-direction="right">Удалить</md-tooltip>
                         </button>

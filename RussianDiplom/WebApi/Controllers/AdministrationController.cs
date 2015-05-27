@@ -230,11 +230,11 @@ namespace RussianDiplom.WebApi.Controllers
         [HttpGet]
         public IEnumerable<QuestionContainer> GetQuestions()
         {
-            var questions = _entities.tQuestion.Select(q => new QuestionContainer
+            var questions = _entities.tQuestion.Where(q => !q.deleted).Select(q => new QuestionContainer
             {
                 Id = q.pk,
                 Text = q.questionText,
-                NumberOfClass = _entities.tClassNumber.Where(cn => q.fkType == cn.pk).Select(cn=>cn.numberOfClass).FirstOrDefault(),
+                NumberOfClass = _entities.tClassNumber.Where(cn => q.fkClassNumber == cn.pk).Select(cn=>cn.numberOfClass).FirstOrDefault(),
                 Theme = _entities.tTheme.Where(t => q.fkTheme == t.pk).Select(t => t.synonym).FirstOrDefault(),
                 Type = _entities.tQuestionType.Where(qt => q.fkType == qt.pk).Select(qt => qt.synonym).FirstOrDefault()
             });
@@ -254,17 +254,20 @@ namespace RussianDiplom.WebApi.Controllers
             return types;
         }
 
-        [Route("api/admin/createTestQuestion/{:answer}")]
+        [Route("api/admin/createTestQuestion")]
         [HttpPost]
-        public void СreateTestQuestion(Guid themeId, String question, [FromBody] RightTestAnswers[] answers)
+        public void СreateTestQuestion([FromBody] TestQuestion testQuestion)
         {
-            tTheme newTheme = new tTheme
+            tQuestion newQuestion = new tQuestion
             {
-                synonym = "bla",
-                fkClassNumber = themeId,
-                name = "bla"
+                questionText = testQuestion.Question,
+                fkTheme = testQuestion.ThemeId,
+                fkClassNumber = testQuestion.ClassId,
+                fkType = _entities.tQuestionType
+                            .Where(qt => qt.name == testQuestion.TypeName)
+                                .Select(qt => qt.pk).FirstOrDefault()
             };
-            _entities.tTheme.Add(newTheme);
+            _entities.tQuestion.Add(newQuestion);
 
             try
             {
@@ -280,37 +283,28 @@ namespace RussianDiplom.WebApi.Controllers
             }
         }
 
-        //[Route("api/admin/removeQuestion")]
-        //[HttpGet]
-        //public void RemoveQuestion(Guid id)
-        //{
-        //    var oldTheme = _entities.tTheme.FirstOrDefault(t => t.pk == id && !t.deleted);
-
-        //    if (oldTheme != null)
-        //    {
-        //        oldTheme.deleted = true;
-        //        try
-        //        {
-        //            _entities.SaveChanges();
-        //        }
-        //        catch (Exception ex)
-        //        {
-        //            var resp = new HttpResponseMessage(HttpStatusCode.NotFound)
-        //            {
-        //                Content = new StringContent(string.Format("Ошибка при сохранении данных"))
-        //            };
-        //            throw new HttpResponseException(resp);
-        //        }
-        //    }
-        //    else
-        //    {
-        //        var resp = new HttpResponseMessage(HttpStatusCode.NotFound)
-        //        {
-        //            Content = new StringContent(string.Format("Такой темы не существует"))
-        //        };
-        //        throw new HttpResponseException(resp);
-        //    }
-        //}
+        [Route("api/admin/removeQuestion")]
+        [HttpGet]
+        public void RemoveQuestion(Guid id)
+        {
+            var oldQuestion = _entities.tQuestion.FirstOrDefault(t => t.pk == id);
+            if (oldQuestion != null)
+            {
+                oldQuestion.deleted = true;
+                try
+                {
+                    _entities.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    var resp = new HttpResponseMessage(HttpStatusCode.NotFound)
+                    {
+                        Content = new StringContent(string.Format("Ошибка при сохранении данных"))
+                    };
+                    throw new HttpResponseException(resp);
+                }
+            }            
+        }
         #endregion
 
     }

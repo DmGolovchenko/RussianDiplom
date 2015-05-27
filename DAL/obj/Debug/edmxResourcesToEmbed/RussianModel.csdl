@@ -83,7 +83,7 @@
     <Key>
       <PropertyRef Name="pk" />
     </Key>
-    <Property Name="pk" Type="Guid" Nullable="false" />
+    <Property Name="pk" Type="Guid" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="questionText" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
     <Property Name="fkType" Type="Guid" Nullable="false" />
     <Property Name="fkClassNumber" Type="Guid" Nullable="false" />
