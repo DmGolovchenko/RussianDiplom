@@ -22,7 +22,7 @@
 
                getQuestionTypes: { method: 'GET', params: { action: 'getQuestionTypes' }, isArray: true },
                getQuestions: { method: 'GET', params: { action: 'getQuestions' }, isArray: true },
-               addQuestion: { method: 'GET', params: { action: 'addQuestion' }, isArray: false },
+               createTestQuestion: { method: 'GET', params: { action: 'createTestQuestion' }, isArray: false },
                removeQuestion: { method: 'GET', params: { action: 'removeQuestion' }, isArray: false }
            })
     };

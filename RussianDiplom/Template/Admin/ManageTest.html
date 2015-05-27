@@ -55,7 +55,7 @@
         <div class="newQuestionParam">
             <label class="questionParamStyle">Тип</label>
             <md-select placeholder="Тип" ng-model="test.type" class="inputSelect">
-                <md-option ng-repeat="item in test.Types" value="{{item.Id}}">{{item.Synonym}}</md-option>
+                <md-option ng-repeat="item in test.Types" value="{{item.Name}}">{{item.Synonym}}</md-option>
             </md-select>
         </div>    
         <div class="newQuestionForm">
@@ -66,7 +66,51 @@
             </md-input-container>
         </div>
         <div class="newQuestionAnswersForm">
-            <label class="questionParamStyle">Ответ(ы)</label>            
-        </div>   
+            <label class="questionParamStyle">Ответ(ы)</label>
+            <div>
+                <table class="table-striped table-bordered answersTestTable">
+                    <tr ng-repeat="item in test.testAnswers">
+                        <td style="width: 10%; text-align: center">{{$index + 1}}</td>
+                        <td style="width: 90%">
+                            <md-input-container class="inputTestAnswers" flex>
+                                <label>Текст ответа</label>
+                                <input ng-model="item.Text">
+                            </md-input-container>
+                        </td>
+                        <td style="width: 10%; text-align: center">
+                            <md-checkbox ng-model="item.IsRight" aria-label="Checkbox 1"></md-checkbox>
+                        </td>
+                    </tr>
+                </table>
+                <div class="manageTestTextAnswers">
+                    <md-button class="md-raised" style="width: 50pt;" ng-click="test.addEmptyTestAnswers()">
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                        <md-tooltip md-direction="right">Добавить строчку</md-tooltip>
+                    </md-button>
+                    <md-button class="md-raised" style="width: 50pt; float:right" ng-click="test.createTestQuestion()">
+                        <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                        <md-tooltip md-direction="left">Создать вопрос</md-tooltip>
+                    </md-button>
+                </div>                               
+            </div>
+            <div ng-show="test.type == 'drag and drop'">
+                Перетаскивание
+            </div>
+            <div ng-show="test.type == 'accent'">
+                Ударение
+            </div>
+            <div ng-show="test.type == 'insert letter'">
+                Вставка буквы
+            </div>
+            <div ng-show="test.type == 'morphological analysis'">
+                Морфологический разбор
+            </div>
+            <div ng-show="test.type == 'riddle'">
+                Загадка
+            </div>
+            <div ng-show="test.type == 'morphemic analysis'">
+                Морфемный разбор
+            </div>
+        </div>               
     </div>
 </div>

@@ -73,5 +73,34 @@
            $scope.test.newThemeSynonym = '';
        }
 
+       $scope.test.generate4EmptyTestAnswers = function () {
+           $scope.test.testAnswers = [];
+           for (var i = 0; i < 2; i++) {
+               var emptyTestAnswer = { Text: '', IsRight: false };               
+               $scope.test.testAnswers.push(emptyTestAnswer);
+           }           
+       }
+       $scope.test.generate4EmptyTestAnswers();
+
+       $scope.test.addEmptyTestAnswers = function () {
+           var emptyTestAnswer = { Text: '', IsRight: false };
+           $scope.test.testAnswers.push(emptyTestAnswer);
+       }
+
+       $scope.test.createTestQuestion = function() {
+           webServices.admin.createTestQuestion(
+               {
+                   themeId: $scope.test.theme,
+                   question: $scope.test.questionText,
+                   answers : $scope.test.testAnswers
+               },
+               function success(value) {
+                   $scope.test.getQuestions();
+               },
+               function error(err) {
+                   alert('Извините. Произошла ошибка при обновлении данных');
+               });
+       }
+
 
    }]);

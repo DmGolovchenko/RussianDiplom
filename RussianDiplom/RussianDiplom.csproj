@@ -160,6 +160,7 @@
     <Compile Include="WebApi\Models\ClassContainer.cs" />
     <Compile Include="WebApi\Models\QuestionContainer.cs" />
     <Compile Include="WebApi\Models\QuestionTypeContainer.cs" />
+    <Compile Include="WebApi\Models\RightTestAnswers.cs" />
     <Compile Include="WebApi\Models\RoleContainer.cs" />
     <Compile Include="WebApi\Models\ThemeContainer.cs" />
     <Compile Include="WebApi\Models\UsersInfo.cs" />

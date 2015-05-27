@@ -248,36 +248,37 @@ namespace RussianDiplom.WebApi.Controllers
             var types = _entities.tQuestionType.Select(qt => new QuestionTypeContainer
             {
                 Id = qt.pk,
-                Synonym = qt.synonym                
+                Synonym = qt.synonym,
+                Name = qt.name
             });
             return types;
         }
 
-        //[Route("api/admin/addQuestion")]
-        //[HttpGet]
-        //public void AddQuestion(String synonym, Guid classId)
-        //{
-        //    tTheme newTheme = new tTheme
-        //    {
-        //        synonym = synonym,
-        //        fkClassNumber = classId,
-        //        name = synonym
-        //    };
-        //    _entities.tTheme.Add(newTheme);
+        [Route("api/admin/createTestQuestion/{:answer}")]
+        [HttpPost]
+        public void СreateTestQuestion(Guid themeId, String question, [FromBody] RightTestAnswers[] answers)
+        {
+            tTheme newTheme = new tTheme
+            {
+                synonym = "bla",
+                fkClassNumber = themeId,
+                name = "bla"
+            };
+            _entities.tTheme.Add(newTheme);
 
-        //    try
-        //    {
-        //        _entities.SaveChanges();
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        var resp = new HttpResponseMessage(HttpStatusCode.NotFound)
-        //        {
-        //            Content = new StringContent(string.Format("Ошибка при сохранении данных"))
-        //        };
-        //        throw new HttpResponseException(resp);
-        //    }
-        //}
+            try
+            {
+                _entities.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                var resp = new HttpResponseMessage(HttpStatusCode.NotFound)
+                {
+                    Content = new StringContent(string.Format("Ошибка при сохранении данных"))
+                };
+                throw new HttpResponseException(resp);
+            }
+        }
 
         //[Route("api/admin/removeQuestion")]
         //[HttpGet]

@@ -100,6 +100,7 @@
     border: 1px solid blue;
     width: 80%;
     margin: 0 auto;
+    padding-bottom: 10pt;
 }
 
 .newQuestionParam {
@@ -118,6 +119,24 @@
 }
 
 .newQuestionAnswersForm {
-    width: 60%;
-    margin: 10pt;
+    width: 100%;    
+}
+
+.inputTestAnswers {
+    width: 100%;
+    padding: 0 !important;
+    padding-bottom: 2pt !important;          
+}
+
+.answersTestTable {    
+    width: 90%;
+    margin: 0 auto;
+    font-size: 12pt;    
+}
+
+.manageTestTextAnswers {
+    width: 90%;
+    margin: 0 auto;
+    font-size: 12pt;
+    margin-top: 5pt;
 }
