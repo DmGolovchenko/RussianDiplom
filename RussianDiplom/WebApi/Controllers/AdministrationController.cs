@@ -1,4 +1,5 @@
 ﻿using System.Data.Entity;
+using System.Web.Security;
 using RussianDiplom.WebApi.Models;
 
 namespace RussianDiplom.WebApi.Controllers
@@ -178,8 +179,8 @@ namespace RussianDiplom.WebApi.Controllers
                 LastActivityDate = us.LastActivityDate,
                 Name = us.UserName,
                 Role = _entities.aspnet_Roles
-                    .Where(r => us.aspnet_Roles.Select( ur => ur.RoleId).FirstOrDefault() == r.RoleId )
-                    .Select(r => r.RoleName).FirstOrDefault()
+                    .Where(r => us.aspnet_Roles.Any( ur => ur.RoleId == r.RoleId ))
+                    .Select(r => new RoleContainer{ Id = r.RoleId, Name = r.RoleName}).FirstOrDefault()
             });
             return users;           
         }
@@ -189,10 +190,12 @@ namespace RussianDiplom.WebApi.Controllers
         public void UpdateUserRole(Guid userId, Guid roleId)
         {
             var user = _entities.aspnet_Users.FirstOrDefault(us => us.UserId == userId);
-
+            var roles = _entities.aspnet_Roles.Where(r => r.RoleId == roleId).ToList().FirstOrDefault();            
+            
             if (user != null)
             {
-                user.aspnet_Roles = _entities.aspnet_Roles.Where(r => r.RoleId == roleId).ToList();
+                //Roles.AddUserToRole(user.UserName, roles.RoleName);               
+                //user.aspnet_Roles = roles;
             }
 
             try

@@ -17,6 +17,15 @@
                     }                   
                     $scope.user.AdminUsers = value;
                     angular.forEach($scope.user.AdminUsers, function (item) {
+                        if (item.Role) {
+                            if (item.Role.Name == 'Administrator') {
+                                item.isAdmin = true;
+                                item.isSimpleUser = false;
+                            } else {
+                                item.isSimpleUser = true;
+                                item.isAdmin = false;
+                            }
+                        }                        
                         item.isEdit = false;
                     });
                     $scope.user.clearInput();
@@ -46,41 +55,40 @@
        $scope.user.getRoles();     
 
        // Обновляем роль пользователя
-       $scope.user.updateUserRole = function (index) {
+       $scope.user.updateUserRole = function () {
+           $scope.user.inProcess = true;
            webServices.admin.updateUserRole(
                {
-                   id: $scope.user.Themes[index].Id
+                   userId: $scope.user.editableUserId,
+                   roleId: $scope.user.editRole
                },
                function success(value) {
                    alert('Роль успешно изменена');
-                   $scope.user.getData();
+                   $scope.user.getUsers();
                },
                function error(err) {
-                   alert('Извините. Произошла ошибка при удалении данных');
+                   alert('Извините. Произошла ошибка при изменении данных');
                });
        }
 
        // Редактируем роль пользователя
        $scope.user.editUserRole = function (id) {
            $scope.user.cancleEditUserRole();
-           $scope.editableUserId = id;
+           $scope.user.editableUserId = id;
            for (var i = 0; i < $scope.user.AdminUsers.length; i++) {
                if ($scope.user.AdminUsers[i].Id == id) {
-                   $scope.user.AdminUsers[i].isEdit = true;
-               } else {
-                   $scope.user.AdminUsers[i].isEdit = false;
-               }
-           }           
-           $scope.user.edit.Roles = 'Administrator';          
+                   $scope.user.AdminUsers[i].isEdit = true;                   
+               }        
+           }                           
        }
 
        // Отменяем редактирование роли пользователя
        $scope.user.cancleEditUserRole = function () {
-           if ($scope.editableUserId) {
+           if ($scope.user.editableUserId) {
                for (var i = 0; i < $scope.user.AdminUsers.length; i++) {
-                   if ($scope.user.AdminUsers[i].Id == $scope.editableUserId) {
+                   if ($scope.user.AdminUsers[i].Id == $scope.user.editableUserId) {
                        $scope.user.AdminUsers[i].isEdit = false;
-                       $scope.editableUserId = null;
+                       $scope.user.editableUserId = null;
                        break;
                    }
                }              

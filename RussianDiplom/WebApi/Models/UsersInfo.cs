@@ -7,6 +7,6 @@
         public Guid Id { get; set; }
         public String Name { get; set; }       
         public DateTime LastActivityDate { get; set; }
-        public String Role { get; set; }
+        public RoleContainer Role { get; set; }
     }
 }
