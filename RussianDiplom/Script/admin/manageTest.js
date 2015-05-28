@@ -1,5 +1,5 @@
 ﻿app.controller('manageTestCtrl', ['$scope', 'WebServices',
-   function ($scope, webServices) {
+   function ($scope, webServices) {     
        $scope.test = {};
        $scope.test.Questions = [];
        $scope.test.Empty = true;
@@ -78,7 +78,7 @@
 
        $scope.test.generate4EmptyTestAnswers = function () {
            $scope.test.testAnswers = [];
-           for (var i = 0; i < 2; i++) {
+           for (var i = 0; i < 4; i++) {
                var emptyTestAnswer = { Text: '', IsRight: false };               
                $scope.test.testAnswers.push(emptyTestAnswer);
            }           

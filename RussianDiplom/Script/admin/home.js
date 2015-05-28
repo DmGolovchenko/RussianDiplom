@@ -5,7 +5,8 @@ app.config(function ($routeProvider, $locationProvider) {
         .when('/', {
             templateUrl: '/Template/Admin/AdminTabs.html',
             controller: 'MyAdminHomeCtrl'
-        });      
+        })
+    .otherwise({ redirectTo: '/Template/ErrorPage.html' });
 
     $locationProvider.html5Mode(false).hashPrefix('!');
 });

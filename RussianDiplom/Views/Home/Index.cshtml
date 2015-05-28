@@ -10,12 +10,20 @@
     <title>Default</title>
     <script src="~/Scripts/angular/angular.js" type="text/javascript"> </script>
     <script src="~/Scripts/angular/angular-route.js" type="text/javascript"> </script>
-    <script src="~/Scripts/angular/angular-resource.js" type="text/javascript"> </script>       
+    <script src="~/Scripts/angular/angular-resource.js" type="text/javascript"> </script>
+    <script src="/Scripts/angular/angular-animate.js" type="text/javascript"> </script>
+    <script src="/Scripts/angular/angular-aria.js" type="text/javascript"> </script> 
+    <script src="/Script/start/home.js" type="text/javascript"> </script>
 </head>
 <body>
-<div>
+<div ng-app="MyStartHomeModule">
     Home
     <a href="/Template/Admin/AdminHome.html">На страницу админа</a>
+    <br/>
+    User Home Page
+    <a href="/Template/User/UserHome.html">На страницу пользователя</a>
 </div>
+    <div ng-view>
+    </div>
 </body>
 </html>

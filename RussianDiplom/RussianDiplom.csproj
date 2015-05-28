@@ -168,7 +168,28 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
+    <Content Include="Content\bonus-park\Газон1.png" />
+    <Content Include="Content\bonus-park\Газон2.png" />
+    <Content Include="Content\bonus-park\ДеревьяТип1.png" />
+    <Content Include="Content\bonus-park\ДеревьяТип2.png" />
+    <Content Include="Content\bonus-park\Здание1.png" />
+    <Content Include="Content\bonus-park\Здание2.png" />
+    <Content Include="Content\bonus-park\Здание3.png" />
+    <Content Include="Content\bonus-park\Здание4.png" />
+    <Content Include="Content\bonus-park\Здание5.png" />
+    <Content Include="Content\bonus-park\КолесоОбозрения.png" />
+    <Content Include="Content\bonus-park\Облако.png" />
+    <Content Include="Content\bonus-park\Солнце.png" />
+    <Content Include="Content\bonus-park\Фон.png" />
+    <Content Include="Content\bonus-park\ФонСГазоном1.png" />
+    <Content Include="Content\bonus-park\Шар1.png" />
+    <Content Include="Content\bonus-park\Шар2.png" />
     <Content Include="Content\images\admin_background.png" />
+    <Content Include="Content\images\admin_logo.png" />
+    <Content Include="Scripts\angular-dragdrop.min.js" />
+    <Content Include="Script\admin\App.js" />
+    <Content Include="Script\start\home.js" />
+    <Content Include="Script\user\bonus.js" />
     <Content Include="Styles\admin\adminHome.css" />
     <Content Include="Styles\angular-material\angular-material.css" />
     <Content Include="Styles\angular-material\angular-material.min.css" />
@@ -1008,12 +1029,16 @@
     <Content Include="Styles\bootstrap\bootstrap.css" />
     <Content Include="Styles\bootstrap\bootstrap.min.css" />
     <Content Include="Styles\login\login_style.css" />
+    <Content Include="Styles\user\UserHome.css" />
     <Content Include="Template\Admin\AdminHome.html" />
     <Content Include="Template\Admin\AdminTabs.html" />
+    <Content Include="Template\ErrorPage.html" />
     <Content Include="Template\Admin\ManageClass.html" />
     <Content Include="Template\Admin\ManageTest.html" />
     <Content Include="Template\Admin\ManageTheme.html" />
     <Content Include="Template\Admin\ManageUser.html" />
+    <Content Include="Template\User\Bonus.html" />
+    <Content Include="Template\User\UserHome.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
