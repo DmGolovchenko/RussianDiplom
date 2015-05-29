@@ -14,19 +14,27 @@
     <script src="/Script/user/bonus.js" type="text/javascript"> </script>
     <script src="/Script/common/web_services.js" type="text/javascript"> </script>
 </head>
-<body ng-app="BonusModule">
+<body ng-app="BonusModule" ng-controller="bonusCtrl">
     <div class="userHeader">
 
     </div>
     <div class="userBody" layout="row">
-        <div flex>
-            [flex]
+        <div class="bonusWindow">
+            <img src="../../Content/bonus-park/background_bonus.png" class="bonusBackground" />
+            <img ng-if="bonus.level >= 1" src="../../Content/bonus-park/level1_bonus.png" class="bonusLevel1" />
+            <img ng-if="bonus.level >= 2" src="../../Content/bonus-park/level2_bonus.png" class="bonusLevel2" />
+            <img ng-if="bonus.level >= 3" src="../../Content/bonus-park/level3_bonus.png" class="bonusLevel3" />
+            <img ng-if="bonus.level >= 4" src="../../Content/bonus-park/level4_bonus.png" class="bonusLevel4" />
+            <img ng-if="bonus.level >= 5" src="../../Content/bonus-park/level5_bonus.png" class="bonusLevel5" />
+            <img ng-if="bonus.level >= 6" src="../../Content/bonus-park/level6_bonus.png" class="bonusLevel6" />
+            <img ng-if="bonus.level >= 7" src="../../Content/bonus-park/level7_bonus.png" class="bonusLevel7" />
+            <img ng-if="bonus.level >= 8" src="../../Content/bonus-park/level8_bonus.png" class="bonusLevel8" />
+            <img ng-if="bonus.level >= 9" src="../../Content/bonus-park/level9_bonus.png" class="bonusLevel9" />
+            <img ng-if="bonus.level >= 10" src="../../Content/bonus-park/level10_bonus.png" class="bonusLevel10" />
+            <img ng-if="bonus.level >= 11" src="../../Content/bonus-park/level11_bonus.png" class="bonusLevel11" />
+            <img ng-if="bonus.level >= 12" src="../../Content/bonus-park/level12_bonus.png" class="bonusLevel12" />
         </div>
-        <div flex>
-            [flex]
-        </div>
-        <div flex>
-            [flex]
+        <div flex="20">
         </div>
     </div>
     <div class="userFooter">

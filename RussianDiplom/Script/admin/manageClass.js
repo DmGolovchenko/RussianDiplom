@@ -1,4 +1,4 @@
-﻿app.controller('manageClassCtrl', ['$scope', 'WebServices',
+﻿ app.controller('manageClassCtrl', ['$scope', 'WebServices',
    function ($scope, webServices) {
        $scope.class = {};
        $scope.class.Classes = [];

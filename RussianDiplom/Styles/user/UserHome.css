@@ -14,5 +14,121 @@
     width: 80%;
     min-height: 600pt;
     margin: 0 auto;
-    background-color: aquamarine;
+    background-color: wheat;
+}
+
+.bonusWindow {
+    position: relative;
+    margin: 20pt;
+    width: 800px;
+    height: 800px;
+}
+
+.bonusBackground {
+    position: absolute;
+    width: 800px;
+    height: 800px;
+    margin: 10px;   
+}
+
+.bonusLevel1 {
+    width: 780px;
+    position: absolute;
+    margin: 10px;  
+    top: 500px;
+}
+
+.bonusLevel2 {
+    width: 600px;
+    position: absolute;
+    margin: 10px;   
+    top: 600px;
+    left: 100px; 
+}
+
+.bonusLevel3 {
+    width: 150px;
+    position: absolute;
+    margin: 10px;   
+    top: 20px;
+    left: 20px;
+}
+
+.bonusLevel4 {
+    width: 150px;
+    position: absolute;
+    margin: 10px;   
+    top: 30px;
+    left: 300px;
+}
+
+.bonusLevel5 {
+    width: 150px;
+    position: absolute;
+    margin: 10px;   
+    top: 460px;
+    left: 190px;
+}
+
+.bonusLevel6 {
+    width: 100px;
+    position: absolute;
+    margin: 10px;
+    top: 440px;
+    left: 140px;
+    z-index: 2;
+}
+
+.bonusLevel7 {
+    width: 90px;
+    position: absolute;
+    margin: 10px;   
+    top: 100px;
+    left: 190px;
+    z-index: 2;
+}
+
+.bonusLevel8 {
+    width: 90px;
+    position: absolute;
+    margin: 10px;   
+    top: 360px;
+    left: 20px;
+    z-index: 1;
+}
+
+.bonusLevel9 {
+    width: 90px;
+    position: absolute;
+    margin: 10px;   
+    top: 330px;
+    left: 80px;
+    z-index: 1;
+}
+
+.bonusLevel10 {
+    width: 90px;
+    position: absolute;
+    margin: 10px;   
+    top: 180px;
+    left: 600px;
+    z-index: 2;
+}
+
+.bonusLevel11 {
+    width: 150px;
+    position: absolute;
+    margin: 10px;   
+    top: 420px;
+    left: 600px;
+    z-index: 1;
+}
+
+.bonusLevel12 {
+    width: 90px;
+    position: absolute;
+    margin: 10px;   
+    top: 390px;
+    left: 400px;
+    z-index: 1;
 }
