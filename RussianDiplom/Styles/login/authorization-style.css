@@ -1,0 +1,49 @@
+body {
+    background: url(/Content/images/start_page.png) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.tabsdemoDynamicHeight md-content {
+  background-color: transparent !important; 
+}
+ 
+.tabsdemoDynamicHeight md-content md-tabs {
+    background: #f6f6f6;
+    border: 1px solid #e1e1e1; 
+}
+
+.tabsdemoDynamicHeight md-content md-tabs md-tabs-canvas {
+      background: white; 
+}
+
+.tabsdemoDynamicHeight md-content h1:first-child {
+    margin-top: 0;
+}
+
+.content-center {
+    width: 30%;    
+    margin: 0 auto;
+    padding-top: 50pt;
+}
+
+.content-height {
+    min-height: 400pt;
+}
+
+.class-style {
+    float: left;
+    margin-right: 40pt;
+}
+
+.birthday-style {
+    float: left;
+    margin-top: -8pt;
+}
+
+.btn-center {   
+    margin: 0 auto;
+    text-align: center;    
+}

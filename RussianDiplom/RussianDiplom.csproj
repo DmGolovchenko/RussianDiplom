@@ -128,6 +128,9 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
+    <Folder Include="Views\Achievement\" />
+    <Folder Include="Views\Test\" />
+    <Folder Include="Views\User\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\AutoMapperConfig.cs" />
@@ -154,8 +157,11 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WebApi\Controllers\AchievementController.cs" />
     <Compile Include="WebApi\Controllers\AdministrationController.cs" />
     <Compile Include="WebApi\Controllers\LoginController.cs" />
+    <Compile Include="WebApi\Controllers\TestController.cs" />
+    <Compile Include="WebApi\Controllers\UserController.cs" />
     <Compile Include="WebApi\Models\ClassNumber.cs" />
     <Compile Include="WebApi\Models\ClassContainer.cs" />
     <Compile Include="WebApi\Models\QuestionContainer.cs" />
@@ -183,8 +189,10 @@
     <Content Include="Content\bonus-park\level10_bonus.png" />
     <Content Include="Content\images\admin_background.png" />
     <Content Include="Content\images\admin_logo.png" />
+    <Content Include="Content\images\start_page.png" />
     <Content Include="Scripts\angular-dragdrop.min.js" />
     <Content Include="Script\admin\App.js" />
+    <Content Include="Script\login\authorization.js" />
     <Content Include="Script\start\home.js" />
     <Content Include="Script\user\bonus.js" />
     <Content Include="Styles\admin\adminHome.css" />
@@ -1025,7 +1033,7 @@
     <Content Include="Styles\bootstrap\bootstrap-theme.min.css" />
     <Content Include="Styles\bootstrap\bootstrap.css" />
     <Content Include="Styles\bootstrap\bootstrap.min.css" />
-    <Content Include="Styles\login\login_style.css" />
+    <Content Include="Styles\login\authorization-style.css" />
     <Content Include="Styles\user\UserHome.css" />
     <Content Include="Template\Admin\AdminHome.html" />
     <Content Include="Template\Admin\AdminTabs.html" />
@@ -1034,6 +1042,7 @@
     <Content Include="Template\Admin\ManageTest.html" />
     <Content Include="Template\Admin\ManageTheme.html" />
     <Content Include="Template\Admin\ManageUser.html" />
+    <Content Include="Template\User\Authorization.html" />
     <Content Include="Template\User\Bonus.html" />
     <Content Include="Template\User\UserHome.html" />
     <Content Include="Web.config" />
