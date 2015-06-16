@@ -1,6 +1,4 @@
-﻿using System.Security.Cryptography.X509Certificates;
-
-namespace RussianDiplom.Controllers
+﻿namespace RussianDiplom.Controllers
 {
     using System;
     using System.Collections.Generic;
@@ -9,54 +7,55 @@ namespace RussianDiplom.Controllers
     using System.Net.Http;
     using System.Web.Http;
     using System.Web.Security;
+    using System.Security.Cryptography.X509Certificates;
 
     public class LoginController : ApiController
     {
         [AllowAnonymous]
         [Route("api/user/loginUser")]
         [HttpGet]
-        public Int32 LoginUser(String Username, String Password)
+        public String LoginUser(String username, String password)
         {
-            if (Username != null && Password != null)
+            if (username != null && password != null)
             {
-                if (Membership.ValidateUser(Username, Password))
+                if (Membership.ValidateUser(username, password))
                 {
-                    var user = Membership.GetUser(Username);
-                    var userRoles = Roles.GetRolesForUser(Username);
+                    var user = Membership.GetUser(username);
+                    var userRoles = Roles.GetRolesForUser(username);
                     if (userRoles.Contains("Administrator"))
                     {
-                        return 0;
+                        return "0";
                     }
                     else
                     {
-                        return 1;
+                        return "1";
                     }
                 }
                 else
                 {
-                    return 2;
+                    return "-1";
                 }
             }
-            else return 1;
+            else return "-2";
         }       
 
         [AllowAnonymous]
         [Route("api/user/register")]
         [HttpGet]
-        public String Register(String Username, String Password)
+        public HttpResponseMessage Register(String username, String password)
         {
             MembershipCreateStatus createStatus;
-            Membership.CreateUser(Username, Password, null, passwordQuestion: null, passwordAnswer: null, isApproved: true, providerUserKey: null, status: out createStatus);                                    
+            Membership.CreateUser(username, password, null, passwordQuestion: null, passwordAnswer: null, isApproved: true, providerUserKey: null, status: out createStatus);                                    
 
             if (createStatus == MembershipCreateStatus.Success)
             {
-                Roles.AddUserToRole(Username,"SimpleUser");
-                FormsAuthentication.SetAuthCookie(Username, false);
-                return createStatus.ToString();
+                Roles.AddUserToRole(username, "SimpleUser");
+                FormsAuthentication.SetAuthCookie(username, false);
+                return new HttpResponseMessage(HttpStatusCode.OK);
             }
             else
             {
-                return createStatus.ToString();
+                return new HttpResponseMessage(HttpStatusCode.Conflict);
             }
         }       
 

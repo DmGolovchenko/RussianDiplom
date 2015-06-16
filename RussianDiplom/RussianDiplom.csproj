@@ -1027,8 +1027,6 @@
     <Content Include="Script\admin\manageUser.js" />
     <Content Include="Script\common\routes.js" />
     <Content Include="Script\common\web_services.js" />
-    <Content Include="Script\login\login.js" />
-    <Content Include="Script\login\register.js" />
     <Content Include="Styles\bootstrap\bootstrap-theme.css" />
     <Content Include="Styles\bootstrap\bootstrap-theme.min.css" />
     <Content Include="Styles\bootstrap\bootstrap.css" />
