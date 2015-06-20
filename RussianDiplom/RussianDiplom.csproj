@@ -189,12 +189,19 @@
     <Content Include="Content\bonus-park\level10_bonus.png" />
     <Content Include="Content\images\admin_background.png" />
     <Content Include="Content\images\admin_logo.png" />
+    <Content Include="Content\images\bonus-mini.png" />
+    <Content Include="Content\images\coin.png" />
+    <Content Include="Content\images\header-logo.png" />
+    <Content Include="Content\images\progress-mini.png" />
+    <Content Include="Content\images\progress-puzzle.png" />
     <Content Include="Content\images\start_page.png" />
+    <Content Include="Content\images\user-background.png" />
     <Content Include="Scripts\angular-dragdrop.min.js" />
     <Content Include="Script\admin\App.js" />
     <Content Include="Script\login\authorization.js" />
     <Content Include="Script\start\home.js" />
     <Content Include="Script\user\bonus.js" />
+    <Content Include="Script\user\testing.js" />
     <Content Include="Styles\admin\adminHome.css" />
     <Content Include="Styles\angular-material\angular-material.css" />
     <Content Include="Styles\angular-material\angular-material.min.css" />
@@ -1042,6 +1049,7 @@
     <Content Include="Template\Admin\ManageUser.html" />
     <Content Include="Template\User\Authorization.html" />
     <Content Include="Template\User\Bonus.html" />
+    <Content Include="Template\User\TestPage.html" />
     <Content Include="Template\User\UserHome.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">

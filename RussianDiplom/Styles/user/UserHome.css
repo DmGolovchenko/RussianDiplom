@@ -1,20 +1,23 @@
 ﻿.userHeader {
     width: 100%;
     height: 50pt;
-    background-color: blue;
+    background-color: white;
 }
 
 .userFooter {
     width: 100%;
     height: 25pt;
-    background-color: blue;
+    background-color: #F5F7FA;
 }
 
+
 .userBody {
-    width: 80%;
+    width: 60%;
     min-height: 600pt;
     margin: 0 auto;
-    background-color: wheat;
+    background-color: #F5F7FA;
+    margin-top: 25pt;
+    margin-bottom: 25pt;   
 }
 
 .bonusWindow {
@@ -131,4 +134,36 @@
     top: 390px;
     left: 400px;
     z-index: 1;
+}
+
+.header-right {
+    float: right;
+}
+
+.cool_img{
+    border-radius: 20px;
+    border: 2px solid rgba(0, 0, 0, 0.2);
+    box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.15);
+}
+
+.userhome-image-to-go {
+    position	: relative;	
+}
+
+.text-in-picture {
+	position : absolute;
+	top	: 45pt;
+	left :35pt;
+	width : 100%;
+    font-size: 14pt;
+    color: #F5F7FA;
+}
+
+.text-in-picture-progress {
+	position : absolute;
+	top	: 45pt;
+	left : 70pt;
+	width : 100%;
+    font-size: 14pt;
+    color: #F5F7FA;
 }
