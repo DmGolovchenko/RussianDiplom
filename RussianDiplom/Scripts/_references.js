@@ -777,5 +777,6 @@
 /// <reference path="../script/start/home.js" />
 /// <reference path="../script/user/bonus.js" />
 /// <reference path="../script/login/authorization.js" />
-/// <reference path="angular-dragdrop.js" />
 /// <reference path="../script/user/testing.js" />
+/// <reference path="angular-dragdrop.js" />
+/// <reference path="../script/user/progress.js" />

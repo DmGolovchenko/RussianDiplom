@@ -10,12 +10,8 @@
     <script src="/Scripts/angular/angular-resource.js" type="text/javascript"> </script>
     <script src="/Scripts/angular/angular-animate.js" type="text/javascript"> </script>
     <script src="/Scripts/angular/angular-aria.js" type="text/javascript"> </script>
-    <script src="/Script/admin/home.js" type="text/javascript"> </script>
     <script src="/Scripts/angular-material.js" type="text/javascript"> </script>
-    <script src="/Script/admin/manageUser.js" type="text/javascript"> </script>
-    <script src="/Script/admin/manageClass.js" type="text/javascript"> </script>
-    <script src="/Script/admin/manageTheme.js" type="text/javascript"> </script>
-    <script src="/Script/admin/manageTest.js" type="text/javascript"> </script>
+    <script src="/Script/user/testing.js" type="text/javascript"> </script>
     <script src="/Script/common/web_services.js" type="text/javascript"> </script>
     <style>
         body {
@@ -26,34 +22,57 @@
             background-size: cover;
             height: 100%;
         }
+        .bigger {
+            font-size: 40pt;
+            color: red;
+        }
     </style>
 
 </head>
-<body>
-    <div class="userHeader">
-        <label style="float: left; margin-right: 20pt; margin-left: 20pt;">
-            <img src="/Content/images/header-logo.png" />
+<body ng-app="TestingModule" ng-controller="testingCtrl">
+<div class="userHeader">
+    <label style="float: left; margin-right: 20pt; margin-left: 20pt;">
+        <img src="/Content/images/header-logo.png"/>
+    </label>
+    <div class="tabbable" style="float: left; margin-top: 18pt;">
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="UserHome.html" data-toggle="tab">Главная</a></li>
+        </ul>
+    </div>
+    <div class="header-right">
+        <label style="margin-top: 13pt; float: left; margin-right: 10pt;">Добро пожаловать, Головченко Д.К.</label>
+        <label style="margin-right: 20pt; margin-left: 20pt; margin-top: 5pt; width: 80pt;">
+            <img src="/Content/images/coin.png" width="40%"/>
+            1000
         </label>
-        <div class="tabbable" style="float: left; margin-top: 18pt;">
-            <ul class="nav nav-tabs">
-                <li class="active"><a href="UserHome.html" data-toggle="tab">Главная</a></li>
-            </ul>
-        </div>
-        <div class="header-right">
-            <label style="margin-top: 13pt; float: left; margin-right: 10pt;">Добро пожаловать, Головченко Д.К.</label>
-            <label style="margin-right: 20pt; margin-left: 20pt; margin-top: 5pt; width: 80pt;">
-                <img src="/Content/images/coin.png" width="40%" />
-                1000
-            </label>
-            <a type="button" class="btn btn-default" style="margin-right: 10pt;" href="Authorization.html">
-                Выход
-            </a>
-        </div>
+        <a type="button" class="btn btn-default" style="margin-right: 10pt;" href="Authorization.html">
+            Выход
+        </a>
     </div>
-    <div class="userBody" layout="row">        
-    </div>
-    <div class="userFooter">
-        Русский язык 2015
+</div>
+    <div style="width: 60%; margin: 0 auto; height: 400pt; background-color: #F5F7FA; margin-top: 25pt; margin-bottom: 25pt; ">
+        <div>
+            <label style="font-size: 16pt; margin-top: 10pt; margin-left: 10pt;">Тема: Ударения</label>
+        </div>
+        <div>
+            <label style="font-size: 16pt;margin-left: 10pt;">Упражнение 1</label>
+        </div>
+        <div style="font-size: 16pt; width: 80%; margin: 0 auto; margin-top: 50pt; text-align: center; color: #888">
+            Поставь правильное ударение в слове
+        </div>
+        <div style="font-size: 30pt; width: 80%; margin: 0 auto; margin-top: 50pt; text-align: center; height: 150pt;">
+            <label ng-class="{bigger: hover1}" ng-mouseenter="hover1 = true" ng-mouseleave="hover1 = false">З</label>
+            <label ng-class="{bigger: hover2}" ng-mouseenter="hover2 = true" ng-mouseleave="hover2 = false">В</label>
+            <label ng-class="{bigger: hover3}" ng-mouseenter="hover3 = true" ng-mouseleave="hover3 = false">О</label>
+            <label ng-class="{bigger: hover4}" ng-mouseenter="hover4 = true" ng-mouseleave="hover4 = false">Н</label>
+            <label ng-class="{bigger: hover5}" ng-mouseenter="hover5 = true" ng-mouseleave="hover5 = false">И</label>
+            <label ng-class="{bigger: hover6}" ng-mouseenter="hover6 = true" ng-mouseleave="hover6 = false">Т</label>
+            <label ng-class="{bigger: hover7}" ng-mouseenter="hover7 = true" ng-mouseleave="hover7 = false">Ь</label>   
+        </div>
+        <div style="margin-bottom: 100pt;">
+            <md-button class="md-raised" style="float: left; width: 100pt; margin-left: 50pt;">НАЗАД</md-button>
+            <md-button class="md-raised" style="float: right; width: 100pt; margin-right: 50pt;">ДАЛЕЕ</md-button>
+        </div>
     </div>
 </body>
 </html>

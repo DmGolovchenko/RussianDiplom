@@ -192,6 +192,8 @@
     <Content Include="Content\images\bonus-mini.png" />
     <Content Include="Content\images\coin.png" />
     <Content Include="Content\images\header-logo.png" />
+    <Content Include="Content\images\progress-answers.png" />
+    <Content Include="Content\images\progress-date.png" />
     <Content Include="Content\images\progress-mini.png" />
     <Content Include="Content\images\progress-puzzle.png" />
     <Content Include="Content\images\start_page.png" />
@@ -201,6 +203,7 @@
     <Content Include="Script\login\authorization.js" />
     <Content Include="Script\start\home.js" />
     <Content Include="Script\user\bonus.js" />
+    <Content Include="Script\user\progress.js" />
     <Content Include="Script\user\testing.js" />
     <Content Include="Styles\admin\adminHome.css" />
     <Content Include="Styles\angular-material\angular-material.css" />
@@ -1049,6 +1052,8 @@
     <Content Include="Template\Admin\ManageUser.html" />
     <Content Include="Template\User\Authorization.html" />
     <Content Include="Template\User\Bonus.html" />
+    <Content Include="Template\User\Progress.html" />
+    <Content Include="Template\User\StartTestPage.html" />
     <Content Include="Template\User\TestPage.html" />
     <Content Include="Template\User\UserHome.html" />
     <Content Include="Web.config" />
