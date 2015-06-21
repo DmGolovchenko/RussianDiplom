@@ -2,7 +2,6 @@
 <Schema Namespace="RussianModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
   <EntityContainer Name="RussianEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="aspnet_Users" EntityType="RussianModel.aspnet_Users" />
-    <EntitySet Name="tAnswer" EntityType="RussianModel.tAnswer" />
     <EntitySet Name="tClassNumber" EntityType="RussianModel.tClassNumber" />
     <EntitySet Name="tQuestion" EntityType="RussianModel.tQuestion" />
     <EntitySet Name="tQuestionType" EntityType="RussianModel.tQuestionType" />
@@ -10,14 +9,6 @@
     <AssociationSet Name="FK_aspnet_Users_tClassNumber" Association="RussianModel.FK_aspnet_Users_tClassNumber">
       <End Role="tClassNumber" EntitySet="tClassNumber" />
       <End Role="aspnet_Users" EntitySet="aspnet_Users" />
-    </AssociationSet>
-    <AssociationSet Name="FK_tAnswer_tQuestion" Association="RussianModel.FK_tAnswer_tQuestion">
-      <End Role="tQuestion" EntitySet="tQuestion" />
-      <End Role="tAnswer" EntitySet="tAnswer" />
-    </AssociationSet>
-    <AssociationSet Name="FK_tAnswer_tQuestion1" Association="RussianModel.FK_tAnswer_tQuestion1">
-      <End Role="tQuestion" EntitySet="tQuestion" />
-      <End Role="tAnswer" EntitySet="tAnswer" />
     </AssociationSet>
     <AssociationSet Name="FK_tQuestion_tClassNumber" Association="RussianModel.FK_tQuestion_tClassNumber">
       <End Role="tClassNumber" EntitySet="tClassNumber" />
@@ -40,6 +31,11 @@
       <End Role="tTheme" EntitySet="tTheme" />
       <End Role="tQuestion" EntitySet="tQuestion" />
     </AssociationSet>
+    <EntitySet Name="tUserInfo" EntityType="RussianModel.tUserInfo" />
+    <AssociationSet Name="FK_tUserInfo_aspnet_Users" Association="RussianModel.FK_tUserInfo_aspnet_Users">
+      <End Role="aspnet_Users" EntitySet="aspnet_Users" />
+      <End Role="tUserInfo" EntitySet="tUserInfo" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="aspnet_Users">
     <Key>
@@ -55,18 +51,7 @@
     <Property Name="fkClassNumber" Type="Guid" />
     <NavigationProperty Name="tClassNumber" Relationship="RussianModel.FK_aspnet_Users_tClassNumber" FromRole="aspnet_Users" ToRole="tClassNumber" />
     <NavigationProperty Name="aspnet_Roles" Relationship="RussianModel.aspnet_UsersInRoles" FromRole="aspnet_Users" ToRole="aspnet_Roles" />
-  </EntityType>
-  <EntityType Name="tAnswer">
-    <Key>
-      <PropertyRef Name="pk" />
-    </Key>
-    <Property Name="pk" Type="Guid" Nullable="false" />
-    <Property Name="textOfAnswer" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
-    <Property Name="fkQuestion" Type="Guid" Nullable="false" />
-    <Property Name="fkCurrentQuestion" Type="Guid" Nullable="false" />
-    <NavigationProperty Name="tQuestion" Relationship="RussianModel.FK_tAnswer_tQuestion" FromRole="tAnswer" ToRole="tQuestion" />
-    <NavigationProperty Name="tQuestion1" Relationship="RussianModel.FK_tAnswer_tQuestion1" FromRole="tAnswer" ToRole="tQuestion" />
-    <Property Name="deleted" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="tUserInfo" Relationship="RussianModel.FK_tUserInfo_aspnet_Users" FromRole="aspnet_Users" ToRole="tUserInfo" />
   </EntityType>
   <EntityType Name="tClassNumber">
     <Key>
@@ -87,8 +72,6 @@
     <Property Name="questionText" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
     <Property Name="fkType" Type="Guid" Nullable="false" />
     <Property Name="fkClassNumber" Type="Guid" Nullable="false" />
-    <NavigationProperty Name="tAnswer" Relationship="RussianModel.FK_tAnswer_tQuestion" FromRole="tQuestion" ToRole="tAnswer" />
-    <NavigationProperty Name="tAnswer1" Relationship="RussianModel.FK_tAnswer_tQuestion1" FromRole="tQuestion" ToRole="tAnswer" />
     <NavigationProperty Name="tClassNumber" Relationship="RussianModel.FK_tQuestion_tClassNumber" FromRole="tQuestion" ToRole="tClassNumber" />
     <NavigationProperty Name="tQuestionType" Relationship="RussianModel.FK_tQuestion_tQuestionType" FromRole="tQuestion" ToRole="tQuestionType" />
     <Property Name="deleted" Type="Boolean" Nullable="false" />
@@ -126,30 +109,6 @@
       </Principal>
       <Dependent Role="aspnet_Users">
         <PropertyRef Name="fkClassNumber" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_tAnswer_tQuestion">
-    <End Type="RussianModel.tQuestion" Role="tQuestion" Multiplicity="1" />
-    <End Type="RussianModel.tAnswer" Role="tAnswer" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tQuestion">
-        <PropertyRef Name="pk" />
-      </Principal>
-      <Dependent Role="tAnswer">
-        <PropertyRef Name="fkQuestion" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_tAnswer_tQuestion1">
-    <End Type="RussianModel.tQuestion" Role="tQuestion" Multiplicity="1" />
-    <End Type="RussianModel.tAnswer" Role="tAnswer" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tQuestion">
-        <PropertyRef Name="pk" />
-      </Principal>
-      <Dependent Role="tAnswer">
-        <PropertyRef Name="fkCurrentQuestion" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -213,6 +172,32 @@
       </Principal>
       <Dependent Role="tQuestion">
         <PropertyRef Name="fkTheme" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="tUserInfo">
+    <Key>
+      <PropertyRef Name="pk" />
+      <PropertyRef Name="fkUser" />
+      <PropertyRef Name="money" />
+      <PropertyRef Name="deleted" />
+    </Key>
+    <Property Name="pk" Type="Guid" Nullable="false" />
+    <Property Name="fkUser" Type="Guid" Nullable="false" />
+    <Property Name="money" Type="Int32" Nullable="false" />
+    <Property Name="info" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="deleted" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="aspnet_Users" Relationship="RussianModel.FK_tUserInfo_aspnet_Users" FromRole="tUserInfo" ToRole="aspnet_Users" />
+  </EntityType>
+  <Association Name="FK_tUserInfo_aspnet_Users">
+    <End Type="RussianModel.aspnet_Users" Role="aspnet_Users" Multiplicity="1" />
+    <End Type="RussianModel.tUserInfo" Role="tUserInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="aspnet_Users">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="tUserInfo">
+        <PropertyRef Name="fkUser" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

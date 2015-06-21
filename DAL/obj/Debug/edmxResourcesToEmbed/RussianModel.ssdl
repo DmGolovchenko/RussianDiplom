@@ -31,16 +31,6 @@
     <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
     <Property Name="RoleId" Type="uniqueidentifier" Nullable="false" />
   </EntityType>
-  <EntityType Name="tAnswer">
-    <Key>
-      <PropertyRef Name="pk" />
-    </Key>
-    <Property Name="pk" Type="uniqueidentifier" Nullable="false" />
-    <Property Name="textOfAnswer" Type="nvarchar" MaxLength="500" Nullable="false" />
-    <Property Name="fkQuestion" Type="uniqueidentifier" Nullable="false" />
-    <Property Name="fkCurrentQuestion" Type="uniqueidentifier" Nullable="false" />
-    <Property Name="deleted" Type="bit" Nullable="false" />
-  </EntityType>
   <EntityType Name="tClassNumber">
     <Key>
       <PropertyRef Name="pk" />
@@ -79,6 +69,21 @@
     <Property Name="fkClassNumber" Type="uniqueidentifier" Nullable="false" />
     <Property Name="deleted" Type="bit" Nullable="false" />
   </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'Russian.dbo.tUserInfo' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="tUserInfo">
+    <Key>
+      <PropertyRef Name="pk" />
+      <PropertyRef Name="fkUser" />
+      <PropertyRef Name="money" />
+      <PropertyRef Name="deleted" />
+    </Key>
+    <Property Name="pk" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="fkUser" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="money" Type="int" Nullable="false" />
+    <Property Name="info" Type="nvarchar" MaxLength="500" />
+    <Property Name="deleted" Type="bit" Nullable="false" />
+  </EntityType>
   <Association Name="FK__aspnet_Us__RoleI__5DCAEF64">
     <End Role="aspnet_Roles" Type="Self.aspnet_Roles" Multiplicity="1" />
     <End Role="aspnet_UsersInRoles" Type="Self.aspnet_UsersInRoles" Multiplicity="*" />
@@ -112,30 +117,6 @@
       </Principal>
       <Dependent Role="aspnet_Users">
         <PropertyRef Name="fkClassNumber" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_tAnswer_tQuestion">
-    <End Role="tQuestion" Type="Self.tQuestion" Multiplicity="1" />
-    <End Role="tAnswer" Type="Self.tAnswer" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tQuestion">
-        <PropertyRef Name="pk" />
-      </Principal>
-      <Dependent Role="tAnswer">
-        <PropertyRef Name="fkQuestion" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_tAnswer_tQuestion1">
-    <End Role="tQuestion" Type="Self.tQuestion" Multiplicity="1" />
-    <End Role="tAnswer" Type="Self.tAnswer" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tQuestion">
-        <PropertyRef Name="pk" />
-      </Principal>
-      <Dependent Role="tAnswer">
-        <PropertyRef Name="fkCurrentQuestion" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -187,15 +168,35 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_tUserInfo_aspnet_Users">
+    <End Role="aspnet_Users" Type="Self.aspnet_Users" Multiplicity="1" />
+    <End Role="tUserInfo" Type="Self.tUserInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="aspnet_Users">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="tUserInfo">
+        <PropertyRef Name="fkUser" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="RussianModelStoreContainer">
     <EntitySet Name="aspnet_Roles" EntityType="Self.aspnet_Roles" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="aspnet_Users" EntityType="Self.aspnet_Users" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="aspnet_UsersInRoles" EntityType="Self.aspnet_UsersInRoles" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="tAnswer" EntityType="Self.tAnswer" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tClassNumber" EntityType="Self.tClassNumber" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tQuestion" EntityType="Self.tQuestion" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tQuestionType" EntityType="Self.tQuestionType" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tTheme" EntityType="Self.tTheme" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tUserInfo" EntityType="Self.tUserInfo" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [tUserInfo].[pk] AS [pk], 
+    [tUserInfo].[fkUser] AS [fkUser], 
+    [tUserInfo].[money] AS [money], 
+    [tUserInfo].[info] AS [info], 
+    [tUserInfo].[deleted] AS [deleted]
+    FROM [dbo].[tUserInfo] AS [tUserInfo]</DefiningQuery>
+    </EntitySet>
     <AssociationSet Name="FK__aspnet_Us__RoleI__5DCAEF64" Association="Self.FK__aspnet_Us__RoleI__5DCAEF64">
       <End Role="aspnet_Roles" EntitySet="aspnet_Roles" />
       <End Role="aspnet_UsersInRoles" EntitySet="aspnet_UsersInRoles" />
@@ -207,14 +208,6 @@
     <AssociationSet Name="FK_aspnet_Users_tClassNumber" Association="Self.FK_aspnet_Users_tClassNumber">
       <End Role="tClassNumber" EntitySet="tClassNumber" />
       <End Role="aspnet_Users" EntitySet="aspnet_Users" />
-    </AssociationSet>
-    <AssociationSet Name="FK_tAnswer_tQuestion" Association="Self.FK_tAnswer_tQuestion">
-      <End Role="tQuestion" EntitySet="tQuestion" />
-      <End Role="tAnswer" EntitySet="tAnswer" />
-    </AssociationSet>
-    <AssociationSet Name="FK_tAnswer_tQuestion1" Association="Self.FK_tAnswer_tQuestion1">
-      <End Role="tQuestion" EntitySet="tQuestion" />
-      <End Role="tAnswer" EntitySet="tAnswer" />
     </AssociationSet>
     <AssociationSet Name="FK_tQuestion_tClassNumber" Association="Self.FK_tQuestion_tClassNumber">
       <End Role="tClassNumber" EntitySet="tClassNumber" />
@@ -231,6 +224,10 @@
     <AssociationSet Name="FK_tTheme_tClassNumber" Association="Self.FK_tTheme_tClassNumber">
       <End Role="tClassNumber" EntitySet="tClassNumber" />
       <End Role="tTheme" EntitySet="tTheme" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tUserInfo_aspnet_Users" Association="Self.FK_tUserInfo_aspnet_Users">
+      <End Role="aspnet_Users" EntitySet="aspnet_Users" />
+      <End Role="tUserInfo" EntitySet="tUserInfo" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

@@ -17,6 +17,7 @@ namespace DAL
         public aspnet_Users()
         {
             this.aspnet_Roles = new HashSet<aspnet_Roles>();
+            this.tUserInfo = new HashSet<tUserInfo>();
         }
     
         public System.Guid ApplicationId { get; set; }
@@ -30,5 +31,6 @@ namespace DAL
     
         public virtual tClassNumber tClassNumber { get; set; }
         public virtual ICollection<aspnet_Roles> aspnet_Roles { get; set; }
+        public virtual ICollection<tUserInfo> tUserInfo { get; set; }
     }
 }

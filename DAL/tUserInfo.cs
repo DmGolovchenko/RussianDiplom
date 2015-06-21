@@ -12,15 +12,14 @@ namespace DAL
     using System;
     using System.Collections.Generic;
     
-    public partial class tAnswer
+    public partial class tUserInfo
     {
         public System.Guid pk { get; set; }
-        public string textOfAnswer { get; set; }
-        public System.Guid fkQuestion { get; set; }
-        public System.Guid fkCurrentQuestion { get; set; }
+        public System.Guid fkUser { get; set; }
+        public int money { get; set; }
+        public string info { get; set; }
         public bool deleted { get; set; }
     
-        public virtual tQuestion tQuestion { get; set; }
-        public virtual tQuestion tQuestion1 { get; set; }
+        public virtual aspnet_Users aspnet_Users { get; set; }
     }
 }

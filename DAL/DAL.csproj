@@ -116,9 +116,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>RussianModel.edmx</DependentUpon>
     </Compile>
-    <Compile Include="tAnswer.cs">
-      <DependentUpon>RussianModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="tClassNumber.cs">
       <DependentUpon>RussianModel.tt</DependentUpon>
     </Compile>
@@ -129,6 +126,9 @@
       <DependentUpon>RussianModel.tt</DependentUpon>
     </Compile>
     <Compile Include="tTheme.cs">
+      <DependentUpon>RussianModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tUserInfo.cs">
       <DependentUpon>RussianModel.tt</DependentUpon>
     </Compile>
   </ItemGroup>

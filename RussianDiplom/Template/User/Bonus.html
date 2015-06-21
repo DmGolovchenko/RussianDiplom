@@ -38,7 +38,7 @@
             <label style="margin-top: 13pt; float: left; margin-right: 10pt;">Добро пожаловать, Головченко Д.К.</label>
             <label style="margin-right: 20pt; margin-left: 20pt; margin-top: 5pt; width: 80pt;">
                 <img src="../../Content/images/coin.png" width="40%" />
-                1000
+                {{userInfo.Money}}
             </label>
             <a type="button" class="btn btn-default" style="margin-right: 10pt;" href="Authorization.html">
                 Выход
@@ -48,21 +48,21 @@
     <div class="userBody" layout="row">
         <div class="bonusWindow">
             <img src="../../Content/bonus-park/background_bonus.png" class="bonusBackground" />
-            <img ng-if="bonus.level >= 1" src="../../Content/bonus-park/level1_bonus.png" class="bonusLevel1" />
-            <img ng-if="bonus.level >= 2" src="../../Content/bonus-park/level2_bonus.png" class="bonusLevel2" />
-            <img ng-if="bonus.level >= 3" src="../../Content/bonus-park/level3_bonus.png" class="bonusLevel3" />
-            <img ng-if="bonus.level >= 4" src="../../Content/bonus-park/level4_bonus.png" class="bonusLevel4" />
-            <img ng-if="bonus.level >= 5" src="../../Content/bonus-park/level5_bonus.png" class="bonusLevel5" />
-            <img ng-if="bonus.level >= 6" src="../../Content/bonus-park/level6_bonus.png" class="bonusLevel6" />
-            <img ng-if="bonus.level >= 7" src="../../Content/bonus-park/level7_bonus.png" class="bonusLevel7" />
-            <img ng-if="bonus.level >= 8" src="../../Content/bonus-park/level8_bonus.png" class="bonusLevel8" />
-            <img ng-if="bonus.level >= 9" src="../../Content/bonus-park/level9_bonus.png" class="bonusLevel9" />
-            <img ng-if="bonus.level >= 10" src="../../Content/bonus-park/level10_bonus.png" class="bonusLevel10" />
-            <img ng-if="bonus.level >= 11" src="../../Content/bonus-park/level11_bonus.png" class="bonusLevel11" />
-            <img ng-if="bonus.level >= 12" src="../../Content/bonus-park/level12_bonus.png" class="bonusLevel12" />
+            <img ng-if="userInfo.Level >= 1" src="../../Content/bonus-park/level1_bonus.png" class="bonusLevel1" />
+            <img ng-if="userInfo.Level >= 2" src="../../Content/bonus-park/level2_bonus.png" class="bonusLevel2" />
+            <img ng-if="userInfo.Level >= 3" src="../../Content/bonus-park/level3_bonus.png" class="bonusLevel3" />
+            <img ng-if="userInfo.Level >= 4" src="../../Content/bonus-park/level4_bonus.png" class="bonusLevel4" />
+            <img ng-if="userInfo.Level >= 5" src="../../Content/bonus-park/level5_bonus.png" class="bonusLevel5" />
+            <img ng-if="userInfo.Level >= 6" src="../../Content/bonus-park/level6_bonus.png" class="bonusLevel6" />
+            <img ng-if="userInfo.Level >= 7" src="../../Content/bonus-park/level7_bonus.png" class="bonusLevel7" />
+            <img ng-if="userInfo.Level >= 8" src="../../Content/bonus-park/level8_bonus.png" class="bonusLevel8" />
+            <img ng-if="userInfo.Level >= 9" src="../../Content/bonus-park/level9_bonus.png" class="bonusLevel9" />
+            <img ng-if="userInfo.Level >= 10" src="../../Content/bonus-park/level10_bonus.png" class="bonusLevel10" />
+            <img ng-if="userInfo.Level >= 11" src="../../Content/bonus-park/level11_bonus.png" class="bonusLevel11" />
+            <img ng-if="userInfo.Level >= 12" src="../../Content/bonus-park/level12_bonus.png" class="bonusLevel12" />
         </div>
         <div flex="20">
-            <label style="margin-top: 30pt; font-size: 14pt; float: left">Уровень : {{bonus.level}}</label>
+            <label style="margin-top: 30pt; font-size: 14pt; float: left">Уровень : {{userInfo.Level}}</label>
             <md-button class="md-raised" ng-click="btnUpLevel()">Повысить уровень</md-button>
         </div>
     </div>

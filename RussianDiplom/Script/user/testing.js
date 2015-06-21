@@ -2,15 +2,16 @@
 
 app.controller('testingCtrl', ['$scope', 'WebServices',
    function ($scope, webServices) {
-       var maxlevel = 12;
-       $scope.bonus = {};
-       $scope.bonus.level = 0;
-
-       $scope.btnUpLevel = function () {
-           if ($scope.bonus.level != maxlevel) {
-               $scope.bonus.level++;
-           } else {
-               alert('Вы достигли максимального уровня');
-           }
+       // Получим информацию о пользователе
+       $scope.getUserInfo = function () {
+           webServices.users.getUserInfo(
+                {},
+                function success(value) {
+                    $scope.userInfo = value;
+                },
+                function error(err) {
+                    alert('Извините. Произошла ошибка при загрузке данных');
+                });
        }
+       $scope.getUserInfo();
    }]);

@@ -4,6 +4,7 @@ app.controller('authorizationCtrl', ['$scope', 'WebServices', '$location','$wind
    function ($scope, webServices, $location, $window) {
        $scope.user = {};
        $scope.register = {};
+       $scope.class = [];
 
 
        $scope.authorize = function() {
@@ -41,5 +42,23 @@ app.controller('authorizationCtrl', ['$scope', 'WebServices', '$location','$wind
                     alert('No');
                 }
             );
-       }       
+       }
+
+       // Получаем все классы
+       $scope.class.getClasses = function () {
+           $scope.class.inProcess = true;
+           webServices.admin.getClasses(
+                {},
+                function success(value) {
+                    if (value.length) {
+                        $scope.class.Empty = false;
+                    } else {
+                        $scope.class.Empty = true;
+                    }
+                    $scope.class.Classes = value;
+                },
+                function error(err) {
+                });
+       }
+       $scope.class.getClasses();
 }]);

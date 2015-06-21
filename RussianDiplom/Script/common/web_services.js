@@ -4,7 +4,8 @@
         users: $resource(apiUrl + 'user/:action', {},
             {
                 loginUser: { method: 'GET', params: { action: 'loginUser' }, isArray:false },
-                register: { method: 'GET', params: { action: 'register' } }
+                register: { method: 'GET', params: { action: 'register' } },
+                getUserInfo: { method: 'GET', params: { action: 'getUserInfo' }, isArray: false }
             }),
         admin: $resource(apiUrl + 'admin/:action', {},
            {

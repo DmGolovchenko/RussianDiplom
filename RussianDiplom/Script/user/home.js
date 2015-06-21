@@ -1,6 +1,6 @@
-﻿var app = angular.module('ProgressModule', ['ngResource', 'ngMaterial']);
+﻿var app = angular.module('HomeModule', ['ngResource', 'ngMaterial']);
 
-app.controller('progressCtrl', ['$scope', 'WebServices',
+app.controller('homeCtrl', ['$scope', 'WebServices',
    function ($scope, webServices) {
        // Получим информацию о пользователе
        $scope.getUserInfo = function () {

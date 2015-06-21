@@ -14,12 +14,6 @@ namespace DAL
     
     public partial class tQuestion
     {
-        public tQuestion()
-        {
-            this.tAnswer = new HashSet<tAnswer>();
-            this.tAnswer1 = new HashSet<tAnswer>();
-        }
-    
         public System.Guid pk { get; set; }
         public string questionText { get; set; }
         public System.Guid fkType { get; set; }
@@ -27,8 +21,6 @@ namespace DAL
         public bool deleted { get; set; }
         public System.Guid fkTheme { get; set; }
     
-        public virtual ICollection<tAnswer> tAnswer { get; set; }
-        public virtual ICollection<tAnswer> tAnswer1 { get; set; }
         public virtual tClassNumber tClassNumber { get; set; }
         public virtual tQuestionType tQuestionType { get; set; }
         public virtual tTheme tTheme { get; set; }

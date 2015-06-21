@@ -170,6 +170,7 @@
     <Compile Include="WebApi\Models\RoleContainer.cs" />
     <Compile Include="WebApi\Models\TestQuestion.cs" />
     <Compile Include="WebApi\Models\ThemeContainer.cs" />
+    <Compile Include="WebApi\Models\UserInfo.cs" />
     <Compile Include="WebApi\Models\UsersInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -203,6 +204,7 @@
     <Content Include="Script\login\authorization.js" />
     <Content Include="Script\start\home.js" />
     <Content Include="Script\user\bonus.js" />
+    <Content Include="Script\user\home.js" />
     <Content Include="Script\user\progress.js" />
     <Content Include="Script\user\testing.js" />
     <Content Include="Styles\admin\adminHome.css" />

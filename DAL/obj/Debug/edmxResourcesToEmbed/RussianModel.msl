@@ -15,17 +15,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="tAnswer">
-      <EntityTypeMapping TypeName="RussianModel.tAnswer">
-        <MappingFragment StoreEntitySet="tAnswer">
-          <ScalarProperty Name="deleted" ColumnName="deleted" />
-          <ScalarProperty Name="fkCurrentQuestion" ColumnName="fkCurrentQuestion" />
-          <ScalarProperty Name="fkQuestion" ColumnName="fkQuestion" />
-          <ScalarProperty Name="textOfAnswer" ColumnName="textOfAnswer" />
-          <ScalarProperty Name="pk" ColumnName="pk" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="tClassNumber">
       <EntityTypeMapping TypeName="RussianModel.tClassNumber">
         <MappingFragment StoreEntitySet="tClassNumber">
@@ -87,5 +76,16 @@
         <ScalarProperty Name="RoleId" ColumnName="RoleId" />
       </EndProperty>
     </AssociationSetMapping>
+    <EntitySetMapping Name="tUserInfo">
+      <EntityTypeMapping TypeName="RussianModel.tUserInfo">
+        <MappingFragment StoreEntitySet="tUserInfo">
+          <ScalarProperty Name="deleted" ColumnName="deleted" />
+          <ScalarProperty Name="info" ColumnName="info" />
+          <ScalarProperty Name="money" ColumnName="money" />
+          <ScalarProperty Name="fkUser" ColumnName="fkUser" />
+          <ScalarProperty Name="pk" ColumnName="pk" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

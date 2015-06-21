@@ -26,11 +26,11 @@ namespace DAL
         }
     
         public virtual DbSet<aspnet_Users> aspnet_Users { get; set; }
-        public virtual DbSet<tAnswer> tAnswer { get; set; }
         public virtual DbSet<tClassNumber> tClassNumber { get; set; }
         public virtual DbSet<tQuestion> tQuestion { get; set; }
         public virtual DbSet<tQuestionType> tQuestionType { get; set; }
         public virtual DbSet<tTheme> tTheme { get; set; }
         public virtual DbSet<aspnet_Roles> aspnet_Roles { get; set; }
+        public virtual DbSet<tUserInfo> tUserInfo { get; set; }
     }
 }
